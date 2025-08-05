@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
@@ -307,21 +307,38 @@
       </div>
       <div id="p1" class="section" style="display:none;">
         <p class="cmd">cat proyecto1.txt</p>
+        <h2>Proyecto 1: Desarrollo Web Responsivo</h2>
         <p class="output">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nibh sit amet facilisis
-          scelerisque...
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nibh sit amet facilisis scelerisque, justo
+          sapien convallis lacus, nec ullamcorper justo libero non orci. Sed sed odio nec nulla hendrerit posuere. Donec lacinia
+          purus vel semper condimentum.
+        </p>
+        <p class="output">
+          Etiam sit amet magna non nulla blandit cursus. Proin eu tortor sed lectus facilisis tincidunt in non risus. Curabitur
+          laoreet sapien vel tortor scelerisque, ac facilisis neque efficitur.
         </p>
       </div>
       <div id="p2" class="section" style="display:none;">
         <p class="cmd">open dashboard.md</p>
+        <h2>Proyecto 2: Dashboard Interactivo</h2>
         <p class="output">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at lacus sit amet enim aliquet aliquet...
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at lacus sit amet enim aliquet aliquet. Fusce
+          vulputate nisl quis augue pretium, at imperdiet dolor fermentum. Mauris pulvinar congue felis, nec placerat nunc
+          vestibulum eu.
+        </p>
+        <p class="output">
+          Vivamus lobortis quam sed erat volutpat, ut tempor lorem fermentum. Nullam non eros vel ligula laoreet porttitor.
         </p>
       </div>
       <div id="p3" class="section" style="display:none;">
         <p class="cmd">run app_summary</p>
+        <h2>Proyecto 3: Aplicación Móvil</h2>
         <p class="output">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet magna sit amet dolor sollicitudin...
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet magna sit amet dolor sollicitudin consectetur.
+          Nullam blandit, magna a faucibus egestas, elit lorem dapibus lorem, a vulputate urna orci nec nunc.
+        </p>
+        <p class="output">
+          Integer ut lacus et urna sollicitudin tristique. Praesent a est vel neque pretium maximus.
         </p>
       </div>
     </div>
@@ -398,18 +415,22 @@
         if (!activeSection) return;
 
         const cmdElem = activeSection.querySelector('.cmd');
-        const outputElem = activeSection.querySelector('.output');
+        const outputElem = activeSection.querySelectorAll('.output');
 
-        if (cmdElem && outputElem) {
+        if (cmdElem && outputElem.length > 0) {
           const cmdText = cmdElem.textContent;
-          const outputText = outputElem.textContent;
+          const outputTexts = Array.from(outputElem).map(el => el.textContent);
 
           cmdElem.textContent = '';
-          outputElem.textContent = '';
+          outputElem.forEach(el => (el.textContent = ''));
 
           await typeText(cmdElem, cmdText, 40);
           await new Promise((r) => setTimeout(r, 300));
-          await typeText(outputElem, outputText, 20);
+
+          for (const text of outputTexts) {
+            const el = outputElem.shift();
+            await typeText(el, text, 20);
+          }
         }
       }
 
