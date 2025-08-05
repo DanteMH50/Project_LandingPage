@@ -30,39 +30,44 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      position: relative;
     }
     .terminal-header {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-end;
+      align-items: flex-start;
       margin-bottom: 24px;
+      width: 100%;
     }
     nav {
       display: flex;
-      gap: 24px;
-      justify-content: center;
+      gap: 12px;
+      justify-content: flex-end;
       align-items: center;
-      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 4px 12px;
+      font-size: 0.95rem;
+      margin-right: 0;
     }
     nav a {
       color: #fff;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      padding: 8px 20px;
-      border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid transparent;
-      letter-spacing: 1px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: background 0.2s;
+      background: none;
+      border: none;
+      letter-spacing: 0.5px;
+      font-size: 0.95rem;
     }
     nav a.active, nav a:hover {
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.10);
       color: #fff;
-      border: 1px solid rgba(255,255,255,0.18);
     }
     .terminal-content {
-      margin-top: 32px;
+      margin-top: 16px;
       min-height: 200px;
       width: 100%;
     }
@@ -83,9 +88,14 @@
         padding: 16px 4vw;
         min-height: 90vh;
       }
+      nav {
+        gap: 6px;
+        font-size: 0.9rem;
+        padding: 2px 6px;
+      }
       nav a {
-        font-size: 1rem;
-        padding: 6px 10px;
+        font-size: 0.9rem;
+        padding: 2px 6px;
       }
     }
   </style>
@@ -136,7 +146,3 @@
         <p class="output">Proyecto 3: <strong>Nombre del Proyecto 3</strong></p>
         <p class="output">Descripción breve del proyecto 3, tecnologías usadas y objetivo principal.</p>
       </div>
-    </div>
-  </aside>
-</body>
-</html>
