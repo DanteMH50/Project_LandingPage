@@ -34,181 +34,68 @@
       justify-content: center;
       transition: background 0.3s, color 0.3s;
     }
-    /* Noise overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGCYAQAAjQAPExs/vAAAAABJRU5ErkJggg==') repeat;
-      opacity: var(--noise-opacity);
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    /* Scanlines overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(rgba(0,0,0,var(--scanline-opacity)) 50%, transparent 50%);
-      background-size: 100% 2px;
-      pointer-events: none;
-      transition: background 0.3s;
-    }
-    @keyframes flicker {
-      0%,100% { opacity: calc(1 - var(--flicker-opacity)); }
-      50%     { opacity: 1; }
-    }
-    .terminal {
-      position: relative;
-      width: 95vw;
-      height: 90vh;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      animation: flicker 4s infinite;
-      transition: background 0.3s, border 0.3s;
-    }
-    .window-header {
-      height: 2.5rem;
-      background: rgba(30,30,30,0.8);
-      display: flex;
-      align-items: center;
-      padding: 0 0.75rem;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s, border 0.3s;
-    }
-    [data-theme='light'] .window-header {
-      background: rgba(240,240,240,0.8);
-    }
-    .window-header .btn {
-      width: 0.75rem;
-      height: 0.75rem;
-      background: #333;
-      border-radius: 50%;
-      margin-right: 0.5rem;
-      transition: background 0.3s;
-    }
-    [data-theme='light'] .window-header .btn { background: #bbb; }
-    .window-header .title {
-      flex: 1;
-      text-align: center;
-      color: var(--fg);
-      opacity: 0.8;
-      font-size: 0.9rem;
-    }
-    .theme-switch {
-      display: flex;
-      align-items: center;
-      margin-right: 0.5rem;
-    }
-    .theme-switch input { display: none; }
-    .theme-switch label {
-      width: 2rem;
-      height: 1rem;
-      background: var(--border);
-      border-radius: 1rem;
-      position: relative;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .theme-switch label::after {
-      content: '';
-      position: absolute;
-      top: 0.1rem;
-      left: 0.1rem;
-      width: 0.8rem;
-      height: 0.8rem;
-      background: var(--fg);
-      border-radius: 50%;
-      transition: transform 0.3s;
-    }
-    .theme-switch input:checked + label::after {
-      transform: translateX(1rem);
-    }
-    .theme-switch span {
-      margin-left: 0.5rem;
-      font-size: 0.8rem;
-      color: var(--fg);
-      opacity: 0.8;
-    }
-    .content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem;
-      transition: color 0.3s;
-    }
-    .content::-webkit-scrollbar { width: 6px; }
-    .content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-    .cmd {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    .cmd::before { content: 'PS C:\\Portfolio> '; }
-    .cmd::after {
-      content: var(--cursor);
-      animation: blink 1s steps(2) infinite;
-      margin-left: 2px;
-    }
+    body::before, body::after { pointer-events: none; position: fixed; content: ''; top:0; left:0; width:100%; height:100%; }
+    body::before { background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGCYAQAAjQAPExs/vAAAAABJRU5ErkJggg==') repeat; opacity: var(--noise-opacity); transition: opacity 0.3s; }
+    body::after { background: linear-gradient(rgba(0,0,0,var(--scanline-opacity)) 50%, transparent 50%); background-size: 100% 2px; transition: background 0.3s; }
+    @keyframes flicker { 0%,100%{opacity:calc(1 - var(--flicker-opacity));}50%{opacity:1;} }
+    .terminal { width:95vw; height:90vh; background:var(--panel); border:1px solid var(--border); border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.7); display:flex; flex-direction:column; overflow:hidden; animation:flicker 4s infinite; transition:background 0.3s, border 0.3s; }
+    .window-header { display:flex; align-items:center; justify-content:space-between; height:2.5rem; background:rgba(30,30,30,0.8); padding:0 1rem; border-bottom:1px solid var(--border); transition:background 0.3s, border 0.3s; }
+    [data-theme='light'] .window-header { background:rgba(240,240,240,0.8); }
+    .header-left { display:flex; align-items:center; gap:0.5rem; }
+    .window-header .btn { width:0.75rem; height:0.75rem; background:#333; border-radius:50%; }
+    [data-theme='light'] .window-header .btn { background:#bbb; }
+    .title { flex:1; text-align:center; font-size:0.9rem; color:var(--fg); opacity:0.8; }
+    .theme-switch { display:flex; align-items:center; }
+    .theme-switch input { display:none; }
+    .theme-switch label { width:2rem; height:1rem; background:var(--border); border-radius:1rem; position:relative; cursor:pointer; transition:background 0.3s; }
+    .theme-switch label::before { content:'🌜'; position:absolute; left:0.2rem; top:0.1rem; font-size:0.8rem; }
+    .theme-switch label::after { content:''; position:absolute; top:0.1rem; left:0.1rem; width:0.8rem; height:0.8rem; background:var(--fg); border-radius:50%; transition:transform 0.3s; }
+    .theme-switch input:checked + label::before { content:'🌞'; }
+    .theme-switch input:checked + label::after { transform:translateX(1rem); }
+    .nav-header { display:flex; gap:1rem; }
+    .nav-header a { color:var(--fg); text-decoration:none; padding:0.25rem 0.5rem; border-radius:4px; transition:background 0.2s; }
+    .nav-header a:hover, .nav-header a.active { background:rgba(255,255,255,0.1); }
+    .content { flex:1; overflow-y:auto; padding:1rem; }
+    .content::-webkit-scrollbar { width:6px; }
+    .content::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1); border-radius:3px; }
+    .cmd { font-weight:bold; margin-bottom:0.5rem; }
+    .cmd::before { content:'PS C:\\Portfolio> '; }
+    .cmd::after { content:var(--cursor); margin-left:2px; animation:blink 1s steps(2) infinite; }
     @keyframes blink { 0%,50%{opacity:1;}51%,100%{opacity:0;} }
-    .output, .comment { margin-bottom: 1rem; line-height: 1.4; }
-    .comment { color: #aaa; font-style: italic; }
-    .nav {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .nav a {
-      color: var(--fg);
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      transition: background 0.2s;
-    }
-    .nav a:hover, .nav a.active { background: rgba(255,255,255,0.1); }
+    .output, .comment { margin-bottom:1rem; line-height:1.4; }
+    .comment { color:#aaa; font-style:italic; }
   </style>
   <script>
-    // Theme switch logic
-    const toggle = document.createElement('input');
-    toggle.type = 'checkbox';
-    toggle.id = 'toggleTheme';
-    const label = document.createElement('label'); label.htmlFor = 'toggleTheme';
-    const span = document.createElement('span'); span.textContent = 'Dark';
-    const switchContainer = document.createElement('div');
-    switchContainer.className = 'theme-switch';
-    switchContainer.append(toggle, label, span);
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('.window-header').insertBefore(switchContainer, document.querySelector('.window-header').firstChild);
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // Theme switch
       const root = document.documentElement;
       const saved = localStorage.getItem('darkMode');
-      const isDark = saved === null || saved === 'true';
+      const isDark = saved !== 'false';
+      const toggle = document.createElement('input'); toggle.type='checkbox'; toggle.id='toggleTheme';
+      const label = document.createElement('label'); label.htmlFor='toggleTheme';
+      const switchDiv = document.createElement('div'); switchDiv.className='theme-switch';
+      switchDiv.append(toggle, label);
+      const headerLeft = document.querySelector('.header-left');
+      headerLeft.insertBefore(switchDiv, headerLeft.firstChild);
+      const update = ()=>{
+        if(toggle.checked){root.setAttribute('data-theme','light'); localStorage.setItem('darkMode','false');}
+        else{root.setAttribute('data-theme','dark'); localStorage.setItem('darkMode','true');}
+      };
       toggle.checked = !isDark;
-      const updateTheme = () => {
-        if (toggle.checked) {
-          root.setAttribute('data-theme', 'light'); span.textContent = 'Light';
-          localStorage.setItem('darkMode', 'false');
-        } else {
-          root.setAttribute('data-theme', 'dark'); span.textContent = 'Dark';
-          localStorage.setItem('darkMode', 'true');
-        }
-      }; updateTheme();
-      toggle.addEventListener('change', updateTheme);
-    });
-    // Section nav logic
-    function show(page) {
-      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-      document.getElementById(page).style.display = 'block';
-      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-      document.getElementById('link-' + page).classList.add('active');
-    }
-    window.addEventListener('DOMContentLoaded', () => {
-      ['main','p1','p2','p3'].forEach(id => {
-        document.getElementById('link-' + id).addEventListener('click', e => { e.preventDefault(); show(id); });
+      update(); toggle.addEventListener('change',update);
+      // Navigation
+      const pages=['main','p1','p2','p3'];
+      const nav = document.createElement('nav'); nav.className='nav-header';
+      pages.forEach(id=>{
+        const a=document.createElement('a'); a.href='#'; a.id='link-'+id; a.textContent = id==='main' ? 'Main' : 'Proyecto '+id.slice(1);
+        a.addEventListener('click',e=>{e.preventDefault(); show(id);});
+        nav.append(a);
       });
+      document.querySelector('.window-header').append(nav);
+      function show(page){
+        pages.forEach(id=>{ document.getElementById(id).style.display='none'; document.getElementById('link-'+id).classList.remove('active'); });
+        document.getElementById(page).style.display='block'; document.getElementById('link-'+page).classList.add('active');
+      }
       show('main');
     });
   </script>
@@ -216,26 +103,22 @@
 <body>
   <div class="terminal">
     <div class="window-header">
-      <div class="btn"></div><div class="btn"></div><div class="btn"></div>
+      <div class="header-left">
+        <div class="btn"></div><div class="btn"></div><div class="btn"></div>
+      </div>
       <div class="title">Windows PowerShell</div>
     </div>
     <div class="content">
       <p class="cmd">show about</p>
       <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
       <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
-      <nav class="nav">
-        <a href="#" id="link-main">Main</a>
-        <a href="#" id="link-p1">Proyecto 1</a>
-        <a href="#" id="link-p2">Proyecto 2</a>
-        <a href="#" id="link-p3">Proyecto 3</a>
-      </nav>
       <div id="main" class="section">
         <p class="output">Bienvenido a mi Black Edition Landing Page.</p>
         <p class="output">Minimalismo absoluto, estética noir y toques de consola.</p>
         <p class="comment"># Selecciona un proyecto arriba.</p>
       </div>
       <div id="p1" class="section" style="display:none;">
-        <p class="output"><strong>Proyecto 1:</strong> Artículo de Investigación en formato texto tipo consola, integrando Lean Six Sigma.</p>
+        <p class="output"><strong>Proyecto 1:</strong> Artículo de Investigación en formato consola con Lean Six Sigma.</p>
       </div>
       <div id="p2" class="section" style="display:none;">
         <p class="output"><strong>Proyecto 2:</strong> Dashboard interactivo con Power BI y visualizaciones inmersivas.</p>
