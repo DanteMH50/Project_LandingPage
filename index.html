@@ -326,6 +326,52 @@
         <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
         <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
       </div>
+      <div id="curriculum" class="section" style="display:none;">
+        <p class="cmd">cat curriculum.txt</p>
+        <p class="output"><strong>Dante Martinez</strong></p>
+        <p class="output">maxmarher@gmail.com | <a href="https://linkedin.com/in/dantemh/" target="_blank" style="color:#fff;text-decoration:underline;">linkedin.com/in/dantemh/</a> | +52 812-427-6331 | Monterrey, MX</p>
+        <p class="output"><strong>Professional Summary</strong><br>
+        Results-driven analyst with 7+ years of experience transforming data into strategic insights that drive business growth across banking, telecom, and food manufacturing. Skilled in designing and implementing automation, dashboards, and predictive models that optimize operations and enhance customer experience. Adept at bridging technical and business teams to align initiatives, inform strategic decisions, and foster innovation through storytelling, data visualization, and design thinking.</p>
+        <p class="output"><strong>Work Experience</strong></p>
+        <p class="output"><u>Continuous Improvement & Training Analyst | Barry Callebaut</u><br>
+        June 2024 - Present<br>
+        • Led the ETL process for commercial dashboards: extracted data from SAP, transformed datasets using Power Query and VBA, and visualized insights in Power BI, cutting report time by 90%.<br>
+        • Developed automations for document handling in collaboration with Customer Service and Sales teams, reducing manual work by 95%.<br>
+        • Defined and implemented KPIs aligned with commercial and supply chain operations to inform strategic planning and continuous improvement initiatives.<br>
+        • Facilitated cross-functional workshops to identify operational bottlenecks and co-create strategic action plans using Lean methodology.</p>
+        <p class="output"><u>Business Analyst - Business Intelligence | Banregio</u><br>
+        March 2023 - June 2024<br>
+        • Optimized data structures and reporting workflows, reducing operational costs by 43% while preserving data accuracy.<br>
+        • Built and deployed real-time dashboards consolidating KPIs across departments, enabling proactive, strategic decision-making.<br>
+        • Designed and implemented a predictive NPS model in Python, replacing third-party analytics, increasing forecast accuracy, and saving 80% in annual costs.<br>
+        • Partnered with business leaders to translate data insights into strategic initiatives enhancing customer engagement and operational efficiency.</p>
+        <p class="output"><u>Business Analyst, Subject Matter Expert - Comcast | Teleperformance</u><br>
+        January 2019 - January 2023<br>
+        • Spearheaded a global CX improvement program using Lean Six Sigma, improving NPS by 20% across regions through strategic process standardization.<br>
+        • Developed a comprehensive performance metrics system integrating multiple channels and KPIs, enabling continuous measurement and strategic refinement.<br>
+        • Led workshops with global stakeholders to translate analytics into actionable strategic plans.<br>
+        • Served as liaison between technical teams and business units to drive scalable, strategy-aligned implementations.</p>
+        <p class="output"><strong>Education</strong><br>
+        Bachelor's Degree in International Business and Commerce - TecMilenio University | 2022<br>
+        Engineer Degree in Software Development - UANL | 2017 (Incomplete)</p>
+        <p class="output"><strong>Certifications</strong><br>
+        Google Project Management: Professional Certificate | Google (August, 2025)<br>
+        Medallia Customer Experience Professional Certification | Medallia (2024)<br>
+        Market Intelligence Certification | TecMilenio (2022)</p>
+        <p class="output"><strong>Core Skills</strong><br>
+        Strategic Data Analysis & Insights<br>
+        Process Automation & Optimization (VBA, Python, Power Automate)<br>
+        Dashboard Development (Power BI, Excel)<br>
+        Predictive Modeling & Forecasting<br>
+        Data Storytelling & Visualization<br>
+        Cross-Functional Collaboration & Team Alignment<br>
+        Customer Experience Strategy & Improvement<br>
+        Lean Six Sigma & Continuous Improvement<br>
+        Business & Digital Transformation</p>
+        <p class="output"><strong>Languages</strong><br>
+        Spanish, Native<br>
+        English, Fluent</p>
+      </div>
       <div id="p1" class="section" style="display:none;">
         <p class="cmd">cat proyecto1.txt</p>
         <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
@@ -347,7 +393,7 @@
       const sunIcon = document.querySelector('.sun-icon');
       const moonIcon = document.querySelector('.moon-icon');
       const nav = document.querySelector('.nav-header');
-      const pages = ['main', 'p1', 'p2', 'p3'];
+      const pages = ['main', 'curriculum', 'p1', 'p2', 'p3'];
 
       const saved = localStorage.getItem('darkMode');
       const isDark = saved !== 'false';
@@ -361,7 +407,9 @@
         const a = document.createElement('a');
         a.href = '#';
         a.id = 'link-' + id;
-        a.textContent = id === 'main' ? 'About Me' : 'Proyecto ' + id.slice(1);
+        if (id === 'main') a.textContent = 'About Me';
+        else if (id === 'curriculum') a.textContent = 'Curriculum';
+        else a.textContent = 'Proyecto ' + id.slice(1);
         a.addEventListener('click', (e) => {
           e.preventDefault();
           showSection(id);
@@ -400,5 +448,3 @@
       showSection('main');
     });
   </script>
-</body>
-</html>
