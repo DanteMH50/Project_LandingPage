@@ -16,65 +16,77 @@
       justify-content: center;
     }
     .terminal {
-      background: #111;
-      border-radius: 16px;
-      padding: 32px;
+      background: rgba(17, 17, 17, 0.85);
+      border-radius: 24px;
+      padding: 40px 32px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.7);
-      width: 100%;
-      max-width: 600px;
+      width: 98vw;
+      max-width: 900px;
+      min-height: 80vh;
+      margin: 1vw;
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
     .terminal-header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-    }
-    .terminal-dots {
-      display: flex;
-      gap: 8px;
-    }
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .dot.red { background: #f44336; }
-    .dot.yellow { background: #ffeb3b; }
-    .dot.green { background: #4caf50; }
-    .terminal-title {
-      font-size: 1rem;
-      color: #bdbdbd;
+      margin-bottom: 24px;
     }
     nav {
-      margin: 24px 0 16px 0;
       display: flex;
-      gap: 16px;
+      gap: 24px;
       justify-content: center;
+      align-items: center;
+      width: 100%;
     }
     nav a {
-      color: #00e676;
+      color: #fff;
       text-decoration: none;
       font-weight: bold;
-      padding: 4px 12px;
-      border-radius: 6px;
-      transition: background 0.2s;
+      font-size: 1.1rem;
+      padding: 8px 20px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid transparent;
+      letter-spacing: 1px;
     }
     nav a.active, nav a:hover {
-      background: #222;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.18);
     }
     .terminal-content {
-      margin-top: 16px;
-      min-height: 160px;
+      margin-top: 32px;
+      min-height: 200px;
+      width: 100%;
     }
-    .cmd {
-      color: #00e676;
-    }
-    .output {
+    .cmd, .output, .comment {
       color: #fff;
     }
+    .cmd {
+      font-weight: bold;
+      opacity: 0.95;
+    }
     .comment {
-      color: #bdbdbd;
+      color: #e0e0e0;
       font-style: italic;
+      opacity: 0.7;
+    }
+    @media (max-width: 700px) {
+      .terminal {
+        padding: 16px 4vw;
+        min-height: 90vh;
+      }
+      nav a {
+        font-size: 1rem;
+        padding: 6px 10px;
+      }
     }
   </style>
   <script>
@@ -94,19 +106,13 @@
 <body>
   <aside class="terminal">
     <div class="terminal-header">
-      <div class="terminal-dots">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-      </div>
-      <span class="terminal-title">bash</span>
+      <nav>
+        <a href="javascript:void(0)" id="nav-main" onclick="showPage('main')">Main</a>
+        <a href="javascript:void(0)" id="nav-proyecto1" onclick="showPage('proyecto1')">Proyecto 1</a>
+        <a href="javascript:void(0)" id="nav-proyecto2" onclick="showPage('proyecto2')">Proyecto 2</a>
+        <a href="javascript:void(0)" id="nav-proyecto3" onclick="showPage('proyecto3')">Proyecto 3</a>
+      </nav>
     </div>
-    <nav>
-      <a href="javascript:void(0)" id="nav-main" onclick="showPage('main')">Main</a>
-      <a href="javascript:void(0)" id="nav-proyecto1" onclick="showPage('proyecto1')">Proyecto 1</a>
-      <a href="javascript:void(0)" id="nav-proyecto2" onclick="showPage('proyecto2')">Proyecto 2</a>
-      <a href="javascript:void(0)" id="nav-proyecto3" onclick="showPage('proyecto3')">Proyecto 3</a>
-    </nav>
     <div class="terminal-content">
       <div id="main">
         <p class="cmd">$ Dante Martinez --brief</p>
