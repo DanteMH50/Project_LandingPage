@@ -6,53 +6,131 @@
   <title>Dante Martinez | Black Edition</title>
   <style>
     body {
-      background: #111;
+      background: #000;
       color: #fff;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
       margin: 0;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .container {
-      background: rgba(20, 20, 20, 0.95);
+    .terminal {
+      background: #111;
       border-radius: 16px;
-      padding: 48px 32px;
+      padding: 32px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.7);
-      text-align: center;
-      max-width: 400px;
+      width: 100%;
+      max-width: 600px;
     }
-    h1 {
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-      color: #e0e0e0;
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    p {
-      font-size: 1.2rem;
-      color: #bdbdbd;
-      margin-bottom: 32px;
+    .terminal-dots {
+      display: flex;
+      gap: 8px;
     }
-    .btn {
-      background: linear-gradient(90deg, #222, #444);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 32px;
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot.red { background: #f44336; }
+    .dot.yellow { background: #ffeb3b; }
+    .dot.green { background: #4caf50; }
+    .terminal-title {
       font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
+      color: #bdbdbd;
     }
-    .btn:hover {
-      background: linear-gradient(90deg, #444, #222);
+    nav {
+      margin: 24px 0 16px 0;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    nav a {
+      color: #00e676;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    nav a.active, nav a:hover {
+      background: #222;
+    }
+    .terminal-content {
+      margin-top: 16px;
+      min-height: 160px;
+    }
+    .cmd {
+      color: #00e676;
+    }
+    .output {
+      color: #fff;
+    }
+    .comment {
+      color: #bdbdbd;
+      font-style: italic;
     }
   </style>
+  <script>
+    function showPage(page) {
+      document.querySelectorAll('.terminal-content > div').forEach(div => {
+        div.style.display = 'none';
+      });
+      document.getElementById(page).style.display = 'block';
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById('nav-' + page).classList.add('active');
+    }
+    window.onload = function() {
+      showPage('main');
+    };
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Dante Martinez</h1>
-    <p>Bienvenido a mi landing page Black Edition.<br>
-      Elegancia, minimalismo y tecnología en un solo lugar.</p>
-    <a href="#contacto" class="btn">Contáctame</a>
+  <aside class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="terminal-title">bash</span>
+    </div>
+    <nav>
+      <a href="javascript:void(0)" id="nav-main" onclick="showPage('main')">Main</a>
+      <a href="javascript:void(0)" id="nav-proyecto1" onclick="showPage('proyecto1')">Proyecto 1</a>
+      <a href="javascript:void(0)" id="nav-proyecto2" onclick="showPage('proyecto2')">Proyecto 2</a>
+      <a href="javascript:void(0)" id="nav-proyecto3" onclick="showPage('proyecto3')">Proyecto 3</a>
+    </nav>
+    <div class="terminal-content">
+      <div id="main">
+        <p class="cmd">$ Dante Martinez --brief</p>
+        <p class="output">Bienvenido a mi Black Edition Landing Page.</p>
+        <p class="output">Aquí encontrarás mis proyectos destacados, enfocados en elegancia, minimalismo y tecnología.</p>
+        <p class="comment"># Selecciona un proyecto en la barra superior para ver más detalles.</p>
+      </div>
+      <div id="proyecto1" style="display:none;">
+        <p class="cmd">$ cd Proyecto1</p>
+        <p class="output">Proyecto 1: <strong>Nombre del Proyecto 1</strong></p>
+        <p class="output">Descripción breve del proyecto 1, tecnologías usadas y objetivo principal.</p>
+        <p class="comment"># Puedes agregar links, imágenes o más detalles aquí.</p>
+      </div>
+      <div id="proyecto2" style="display:none;">
+        <p class="cmd">$ cd Proyecto2</p>
+        <p class="output">Proyecto 2: <strong>Nombre del Proyecto 2</strong></p>
+        <p class="output">Descripción breve del proyecto 2, tecnologías usadas y objetivo principal.</p>
+      </div>
+      <div id="proyecto3" style="display:none;">
+        <p class="cmd">$ cd Proyecto3</p>
+        <p class="output">Proyecto 3: <strong>Nombre del Proyecto 3</strong></p>
+        <p class="output">Descripción breve del proyecto 3, tecnologías usadas y objetivo principal.</p>
+      </div>
+    </div>
+  </aside>
+</body>
+</html>
