@@ -335,11 +335,21 @@
       const nav = document.querySelector('.nav-header');
       const pages = ['main', 'p1', 'p2', 'p3'];
 
+      // Guardar texto original para cada sección para no perderlo al limpiar
+      pages.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+          const cmdElem = section.querySelector('.cmd');
+          const outputElem = section.querySelector('.output');
+          if (cmdElem) cmdElem.setAttribute('data-original', cmdElem.textContent.trim());
+          if (outputElem) outputElem.setAttribute('data-original', outputElem.textContent.trim());
+        }
+      });
+
       // Cargar tema guardado o por defecto
       const saved = localStorage.getItem('darkMode');
       const isDark = saved !== 'false';
 
-      // Inicializar toggle y mostrar iconos
       toggle.checked = !isDark;
       updateTheme();
 
@@ -358,21 +368,7 @@
         nav.appendChild(a);
       });
 
-      function updateTheme() {
-        if (toggle.checked) {
-          root.setAttribute('data-theme', 'light');
-          localStorage.setItem('darkMode', 'false');
-          sunIcon.style.display = 'inline';
-          moonIcon.style.display = 'none';
-        } else {
-          root.setAttribute('data-theme', 'dark');
-          localStorage.setItem('darkMode', 'true');
-          sunIcon.style.display = 'none';
-          moonIcon.style.display = 'inline';
-        }
-      }
-
-      async function typeText(element, text, delay = 30) {
+      async function typeText(element, text, delay = 10) {
         element.textContent = '';
         for (let i = 0; i < text.length; i++) {
           element.textContent += text[i];
@@ -393,7 +389,6 @@
           }
         });
 
-        // Animar tipeo en la sección activa
         const activeSection = document.getElementById(id);
         if (!activeSection) return;
 
@@ -401,15 +396,15 @@
         const outputElem = activeSection.querySelector('.output');
 
         if (cmdElem && outputElem) {
-          const cmdText = cmdElem.textContent;
-          const outputText = outputElem.textContent;
+          const cmdText = cmdElem.getAttribute('data-original');
+          const outputText = outputElem.getAttribute('data-original');
 
           cmdElem.textContent = '';
           outputElem.textContent = '';
 
-          await typeText(cmdElem, cmdText, 40);
-          await new Promise((r) => setTimeout(r, 300));
-          await typeText(outputElem, outputText, 20);
+          await typeText(cmdElem, cmdText, 20);
+          await new Promise((r) => setTimeout(r, 100));
+          await typeText(outputElem, outputText, 10);
         }
       }
 
