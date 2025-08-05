@@ -95,6 +95,7 @@
       overflow: hidden;
       animation: flicker 4s infinite;
       transition: background 0.3s, border 0.3s;
+      position: relative;
     }
 
     .window-header {
@@ -106,6 +107,11 @@
       border-bottom: 1px solid var(--border);
       transition: background 0.3s, border 0.3s;
       gap: 1rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 2;
     }
 
     [data-theme='light'] .window-header {
@@ -135,27 +141,37 @@
       gap: 0.25rem;
       margin-left: auto;
       align-items: center;
+      font-size: 0.85rem;
+      padding: 2px 8px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
     }
 
     .nav-header a {
       color: var(--fg);
       text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
+      padding: 2px 8px;
+      border-radius: 5px;
       transition: background 0.2s;
       font-family: var(--font-family);
-      font-size: var(--font-size-base);
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: none;
+      border: none;
+      letter-spacing: 0.5px;
     }
 
     .nav-header a:hover,
     .nav-header a.active {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.10);
+      color: #fff;
     }
 
     .content {
       flex: 1;
       overflow-y: auto;
-      padding: 1rem;
+      padding: 3rem 1rem 1rem 1rem;
+      margin-top: 2.5rem;
     }
 
     .content::-webkit-scrollbar {
@@ -172,6 +188,7 @@
       font-size: var(--font-size-cmd);
       font-weight: bold;
       margin-bottom: 0.5rem;
+      color: #fff;
     }
 
     .cmd::before {
@@ -198,6 +215,7 @@
       margin-bottom: 1rem;
       line-height: 1.4;
       white-space: pre-wrap;
+      color: #fff;
     }
 
     .comment {
@@ -304,6 +322,7 @@
     <div class="content">
       <div id="main" class="section">
         <p class="cmd">show about</p>
+        <p class="output"><strong>About Me</strong></p>
         <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
         <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
       </div>
@@ -342,7 +361,7 @@
         const a = document.createElement('a');
         a.href = '#';
         a.id = 'link-' + id;
-        a.textContent = id === 'main' ? 'Main' : 'Proyecto ' + id.slice(1);
+        a.textContent = id === 'main' ? 'About Me' : 'Proyecto ' + id.slice(1);
         a.addEventListener('click', (e) => {
           e.preventDefault();
           showSection(id);
