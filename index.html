@@ -3,177 +3,247 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dante Martinez | Black Edition</title>
+  <title>Dante Martinez | Black Noir Portfolio</title>
   <style>
     :root {
-      --bg: #0a0a0a;
+      --bg: #000;
       --fg: #e0e0e0;
-      --panel-bg: rgba(25,25,25,0.6);
-      --border: rgba(255,255,255,0.08);
-      --noise-opacity: 0.04;
+      --panel: rgba(20,20,20,0.9);
+      --border: rgba(255,255,255,0.1);
+      --noise-opacity: 0.03;
       --scanline-opacity: 0.06;
-      --flicker-opacity: 0.03;
+      --cursor: '\2588';
+      --flicker-opacity: 0.04;
     }
-
+    [data-theme='light'] {
+      --bg: #f5f5f5;
+      --fg: #111;
+      --panel: rgba(255,255,255,0.95);
+      --border: rgba(0,0,0,0.1);
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       background: var(--bg);
       color: var(--fg);
-      font-family: 'Fira Mono','Consolas','Menlo',monospace;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Consolas', monospace;
+      height: 100vh;
+      width: 100vw;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s;
     }
-
-    /* Ruido de fondo */
+    /* Noise overlay */
     body::before {
-      content: "";
-      position: absolute;
-      top:0; left:0; width:100%; height:100%;
-      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAY…') repeat;
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGCYAQAAjQAPExs/vAAAAABJRU5ErkJggg==') repeat;
       opacity: var(--noise-opacity);
       pointer-events: none;
+      transition: opacity 0.3s;
     }
-
-    /* Scanlines */
+    /* Scanlines overlay */
     body::after {
-      content: "";
-      position: absolute;
-      top:0; left:0; width:100%; height:100%;
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,var(--scanline-opacity)) 50%, transparent 50%);
       background-size: 100% 2px;
       pointer-events: none;
+      transition: background 0.3s;
     }
-
     @keyframes flicker {
-      0%,100% { opacity: calc(var(--panel-opacity,1) - var(--flicker-opacity)); }
-      50%     { opacity: var(--panel-opacity,1); }
+      0%,100% { opacity: calc(1 - var(--flicker-opacity)); }
+      50%     { opacity: 1; }
     }
-
     .terminal {
       position: relative;
-      background: var(--panel-bg);
-      border-radius: 24px;
-      padding: 2.5rem 2rem;
-      backdrop-filter: blur(12px) saturate(180%);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+      width: 95vw;
+      height: 90vh;
+      background: var(--panel);
       border: 1px solid var(--border);
-      width: 90vw; max-width: 900px; min-height: 80vh;
-      display: flex; flex-direction: column;
-      animation: flicker 3s infinite;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: flicker 4s infinite;
+      transition: background 0.3s, border 0.3s;
     }
-
-    .terminal-header {
+    .window-header {
+      height: 2.5rem;
+      background: rgba(30,30,30,0.8);
+      display: flex;
+      align-items: center;
+      padding: 0 0.75rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s, border 0.3s;
+    }
+    [data-theme='light'] .window-header {
+      background: rgba(240,240,240,0.8);
+    }
+    .window-header .btn {
+      width: 0.75rem;
+      height: 0.75rem;
+      background: #333;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      transition: background 0.3s;
+    }
+    [data-theme='light'] .window-header .btn { background: #bbb; }
+    .window-header .title {
+      flex: 1;
+      text-align: center;
+      color: var(--fg);
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+    .theme-switch {
+      display: flex;
+      align-items: center;
+      margin-right: 0.5rem;
+    }
+    .theme-switch input { display: none; }
+    .theme-switch label {
+      width: 2rem;
+      height: 1rem;
+      background: var(--border);
+      border-radius: 1rem;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .theme-switch label::after {
+      content: '';
       position: absolute;
-      top: 0; right: 0;
-      padding: 1rem 1.5rem 0 0;
-      display: flex; gap: 0.5rem;
+      top: 0.1rem;
+      left: 0.1rem;
+      width: 0.8rem;
+      height: 0.8rem;
+      background: var(--fg);
+      border-radius: 50%;
+      transition: transform 0.3s;
     }
-
-    nav {
-      display: flex; gap: 0.5rem;
-      background: rgba(255,255,255,0.03);
-      border-radius: 8px; padding: 0.25rem 0.75rem;
+    .theme-switch input:checked + label::after {
+      transform: translateX(1rem);
     }
-
-    nav a {
+    .theme-switch span {
+      margin-left: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--fg);
+      opacity: 0.8;
+    }
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      transition: color 0.3s;
+    }
+    .content::-webkit-scrollbar { width: 6px; }
+    .content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    .cmd {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .cmd::before { content: 'PS C:\\Portfolio> '; }
+    .cmd::after {
+      content: var(--cursor);
+      animation: blink 1s steps(2) infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink { 0%,50%{opacity:1;}51%,100%{opacity:0;} }
+    .output, .comment { margin-bottom: 1rem; line-height: 1.4; }
+    .comment { color: #aaa; font-style: italic; }
+    .nav {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .nav a {
       color: var(--fg);
       text-decoration: none;
-      font-size: 0.85rem;
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
       transition: background 0.2s;
     }
-    nav a:hover, nav a.active {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .terminal-content {
-      margin-top: 3rem;
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .cmd {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      animation: typewriter 1.5s steps(30) 1;
-    }
-    .output, .comment {
-      margin-bottom: 1rem;
-    }
-    .comment {
-      font-style: italic;
-      opacity: 0.7;
-    }
-
-    @keyframes typewriter {
-      from { width: 0; }
-      to   { width: 100%; }
-    }
-
-    /* Scrollbar minimalista */
-    .terminal-content::-webkit-scrollbar {
-      width: 6px;
-    }
-    .terminal-content::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.1);
-      border-radius: 3px;
-    }
+    .nav a:hover, .nav a.active { background: rgba(255,255,255,0.1); }
   </style>
   <script>
-    function showPage(page) {
-      document.querySelectorAll('.terminal-content > div')
-        .forEach(div => div.style.display = 'none');
+    // Theme switch logic
+    const toggle = document.createElement('input');
+    toggle.type = 'checkbox';
+    toggle.id = 'toggleTheme';
+    const label = document.createElement('label'); label.htmlFor = 'toggleTheme';
+    const span = document.createElement('span'); span.textContent = 'Dark';
+    const switchContainer = document.createElement('div');
+    switchContainer.className = 'theme-switch';
+    switchContainer.append(toggle, label, span);
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.window-header').insertBefore(switchContainer, document.querySelector('.window-header').firstChild);
+      const root = document.documentElement;
+      const saved = localStorage.getItem('darkMode');
+      const isDark = saved === null || saved === 'true';
+      toggle.checked = !isDark;
+      const updateTheme = () => {
+        if (toggle.checked) {
+          root.setAttribute('data-theme', 'light'); span.textContent = 'Light';
+          localStorage.setItem('darkMode', 'false');
+        } else {
+          root.setAttribute('data-theme', 'dark'); span.textContent = 'Dark';
+          localStorage.setItem('darkMode', 'true');
+        }
+      }; updateTheme();
+      toggle.addEventListener('change', updateTheme);
+    });
+    // Section nav logic
+    function show(page) {
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
       document.getElementById(page).style.display = 'block';
-      document.querySelectorAll('nav a')
-        .forEach(a => a.classList.remove('active'));
-      document.getElementById('nav-' + page).classList.add('active');
+      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById('link-' + page).classList.add('active');
     }
-    window.onload = () => showPage('main');
+    window.addEventListener('DOMContentLoaded', () => {
+      ['main','p1','p2','p3'].forEach(id => {
+        document.getElementById('link-' + id).addEventListener('click', e => { e.preventDefault(); show(id); });
+      });
+      show('main');
+    });
   </script>
 </head>
 <body>
-  <aside class="terminal">
-    <div class="terminal-header">
-      <nav>
-        <a href="javascript:void(0)" id="nav-main" onclick="showPage('main')">Main</a>
-        <a href="javascript:void(0)" id="nav-proyecto1" onclick="showPage('proyecto1')">Proyecto 1</a>
-        <a href="javascript:void(0)" id="nav-proyecto2" onclick="showPage('proyecto2')">Proyecto 2</a>
-        <a href="javascript:void(0)" id="nav-proyecto3" onclick="showPage('proyecto3')">Proyecto 3</a>
+  <div class="terminal">
+    <div class="window-header">
+      <div class="btn"></div><div class="btn"></div><div class="btn"></div>
+      <div class="title">Windows PowerShell</div>
+    </div>
+    <div class="content">
+      <p class="cmd">show about</p>
+      <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
+      <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
+      <nav class="nav">
+        <a href="#" id="link-main">Main</a>
+        <a href="#" id="link-p1">Proyecto 1</a>
+        <a href="#" id="link-p2">Proyecto 2</a>
+        <a href="#" id="link-p3">Proyecto 3</a>
       </nav>
-    </div>
-    <div class="terminal-content">
-      <div id="main">
-        <p class="cmd">$ Dante Martinez --brief</p>
+      <div id="main" class="section">
         <p class="output">Bienvenido a mi Black Edition Landing Page.</p>
-        <p class="output">Aquí encontrarás mis proyectos destacados, enfocados en elegancia, minimalismo y tecnología.</p>
-        <p class="comment"># Selecciona un proyecto en la barra superior para ver más detalles.</p>
+        <p class="output">Minimalismo absoluto, estética noir y toques de consola.</p>
+        <p class="comment"># Selecciona un proyecto arriba.</p>
       </div>
-      <div id="proyecto1" style="display:none;">
-        <p class="cmd">$ cd Proyecto1</p>
-        <p class="output">Proyecto 1: <strong>Nombre del Proyecto 1</strong></p>
-        <p class="output">Descripción breve del proyecto 1, tecnologías usadas y objetivo principal.</p>
-        <p class="comment"># Aquí va tu artículo narrativo.</p>
+      <div id="p1" class="section" style="display:none;">
+        <p class="output"><strong>Proyecto 1:</strong> Artículo de Investigación en formato texto tipo consola, integrando Lean Six Sigma.</p>
       </div>
-      <div id="proyecto2" style="display:none;">
-        <p class="cmd">$ cd Proyecto2</p>
-        <p class="output">Proyecto 2: <strong>Nombre del Proyecto 2</strong></p>
-        <p class="output">Dashboard y presentación (placeholder de imagen).</p>
+      <div id="p2" class="section" style="display:none;">
+        <p class="output"><strong>Proyecto 2:</strong> Dashboard interactivo con Power BI y visualizaciones inmersivas.</p>
       </div>
-      <div id="proyecto3" style="display:none;">
-        <p class="cmd">$ cd Proyecto3</p>
-        <p class="output">Proyecto 3: <strong>Nombre del Proyecto 3</strong></p>
-        <ul class="output">
-          <li>Punto clave 1</li>
-          <li>Punto clave 2</li>
-          <li>Punto clave 3</li>
-        </ul>
+      <div id="p3" class="section" style="display:none;">
+        <p class="output"><strong>Proyecto 3:</strong> Aplicación web React+Node.js para gestión de tareas en tiempo real.</p>
       </div>
     </div>
-  </aside>
+  </div>
 </body>
 </html>
