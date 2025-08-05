@@ -164,23 +164,34 @@
     .nav-header a:hover,
     .nav-header a.active {
       background: rgba(255, 255, 255, 0.10);
-      color: #fff;
+      color: var(--fg);
     }
 
     .content {
       flex: 1;
       overflow-y: auto;
-      padding: 3rem 1rem 1rem 1rem;
+      padding: 2.2rem 0 1rem 0;
       margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
 
-    .content::-webkit-scrollbar {
-      width: 6px;
+    .inner-content {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      /* Glass effect */
+      background: rgba(30,30,30,0.18);
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      transition: background 0.3s;
     }
-
-    .content::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
+    [data-theme='light'] .inner-content {
+      background: rgba(255,255,255,0.18);
     }
 
     .cmd {
@@ -188,7 +199,7 @@
       font-size: var(--font-size-cmd);
       font-weight: bold;
       margin-bottom: 0.5rem;
-      color: #fff;
+      color: var(--fg);
     }
 
     .cmd::before {
@@ -215,7 +226,12 @@
       margin-bottom: 1rem;
       line-height: 1.4;
       white-space: pre-wrap;
-      color: #fff;
+      color: var(--fg);
+    }
+
+    .output a {
+      color: var(--fg);
+      text-decoration: underline;
     }
 
     .comment {
@@ -237,7 +253,7 @@
     }
 
     .moon-icon {
-      color: #fff;
+      color: var(--fg);
     }
 
     [data-theme='light'] .moon-icon {
@@ -320,69 +336,75 @@
       <nav class="nav-header" role="navigation" aria-label="Navegación principal"></nav>
     </div>
     <div class="content">
-      <div id="main" class="section">
-        <p class="cmd">show about</p>
-        <p class="output"><strong>About Me</strong></p>
-        <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
-        <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
-      </div>
-      <div id="curriculum" class="section" style="display:none;">
-        <p class="cmd">cat curriculum.txt</p>
-        <p class="output"><strong>Dante Martinez</strong></p>
-        <p class="output">maxmarher@gmail.com | <a href="https://linkedin.com/in/dantemh/" target="_blank" style="color:#fff;text-decoration:underline;">linkedin.com/in/dantemh/</a> | +52 812-427-6331 | Monterrey, MX</p>
-        <p class="output"><strong>Professional Summary</strong><br>
-        Results-driven analyst with 7+ years of experience transforming data into strategic insights that drive business growth across banking, telecom, and food manufacturing. Skilled in designing and implementing automation, dashboards, and predictive models that optimize operations and enhance customer experience. Adept at bridging technical and business teams to align initiatives, inform strategic decisions, and foster innovation through storytelling, data visualization, and design thinking.</p>
-        <p class="output"><strong>Work Experience</strong></p>
-        <p class="output"><u>Continuous Improvement & Training Analyst | Barry Callebaut</u><br>
-        June 2024 - Present<br>
-        • Led the ETL process for commercial dashboards: extracted data from SAP, transformed datasets using Power Query and VBA, and visualized insights in Power BI, cutting report time by 90%.<br>
-        • Developed automations for document handling in collaboration with Customer Service and Sales teams, reducing manual work by 95%.<br>
-        • Defined and implemented KPIs aligned with commercial and supply chain operations to inform strategic planning and continuous improvement initiatives.<br>
-        • Facilitated cross-functional workshops to identify operational bottlenecks and co-create strategic action plans using Lean methodology.</p>
-        <p class="output"><u>Business Analyst - Business Intelligence | Banregio</u><br>
-        March 2023 - June 2024<br>
-        • Optimized data structures and reporting workflows, reducing operational costs by 43% while preserving data accuracy.<br>
-        • Built and deployed real-time dashboards consolidating KPIs across departments, enabling proactive, strategic decision-making.<br>
-        • Designed and implemented a predictive NPS model in Python, replacing third-party analytics, increasing forecast accuracy, and saving 80% in annual costs.<br>
-        • Partnered with business leaders to translate data insights into strategic initiatives enhancing customer engagement and operational efficiency.</p>
-        <p class="output"><u>Business Analyst, Subject Matter Expert - Comcast | Teleperformance</u><br>
-        January 2019 - January 2023<br>
-        • Spearheaded a global CX improvement program using Lean Six Sigma, improving NPS by 20% across regions through strategic process standardization.<br>
-        • Developed a comprehensive performance metrics system integrating multiple channels and KPIs, enabling continuous measurement and strategic refinement.<br>
-        • Led workshops with global stakeholders to translate analytics into actionable strategic plans.<br>
-        • Served as liaison between technical teams and business units to drive scalable, strategy-aligned implementations.</p>
-        <p class="output"><strong>Education</strong><br>
-        Bachelor's Degree in International Business and Commerce - TecMilenio University | 2022<br>
-        Engineer Degree in Software Development - UANL | 2017 (Incomplete)</p>
-        <p class="output"><strong>Certifications</strong><br>
-        Google Project Management: Professional Certificate | Google (August, 2025)<br>
-        Medallia Customer Experience Professional Certification | Medallia (2024)<br>
-        Market Intelligence Certification | TecMilenio (2022)</p>
-        <p class="output"><strong>Core Skills</strong><br>
-        Strategic Data Analysis & Insights<br>
-        Process Automation & Optimization (VBA, Python, Power Automate)<br>
-        Dashboard Development (Power BI, Excel)<br>
-        Predictive Modeling & Forecasting<br>
-        Data Storytelling & Visualization<br>
-        Cross-Functional Collaboration & Team Alignment<br>
-        Customer Experience Strategy & Improvement<br>
-        Lean Six Sigma & Continuous Improvement<br>
-        Business & Digital Transformation</p>
-        <p class="output"><strong>Languages</strong><br>
-        Spanish, Native<br>
-        English, Fluent</p>
-      </div>
-      <div id="p1" class="section" style="display:none;">
-        <p class="cmd">cat proyecto1.txt</p>
-        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-      </div>
-      <div id="p2" class="section" style="display:none;">
-        <p class="cmd">open dashboard.md</p>
-        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-      </div>
-      <div id="p3" class="section" style="display:none;">
-        <p class="cmd">run app_summary</p>
-        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <div class="inner-content">
+        <div id="main" class="section">
+          <p class="cmd">show about</p>
+          <p class="output"><strong>About Me</strong></p>
+          <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
+          <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
+        </div>
+        <div id="p1" class="section" style="display:none;">
+          <p class="cmd">cat proyecto1.txt</p>
+          <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+        <div id="p2" class="section" style="display:none;">
+          <p class="cmd">open dashboard.md</p>
+          <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+        <div id="p3" class="section" style="display:none;">
+          <p class="cmd">run app_summary</p>
+          <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+        <div id="curriculum" class="section" style="display:none;">
+          <p class="cmd">cat curriculum.txt</p>
+          <p class="output"><strong>Dante Martinez</strong></p>
+          <p class="output">
+            maxmarher@gmail.com |
+            <a href="https://linkedin.com/in/dantemh/" target="_blank">linkedin.com/in/dantemh/</a> |
+            +52 812-427-6331 | Monterrey, MX
+          </p>
+          <p class="output"><strong>Professional Summary</strong><br>
+          Results-driven analyst with 7+ years of experience transforming data into strategic insights that drive business growth across banking, telecom, and food manufacturing. Skilled in designing and implementing automation, dashboards, and predictive models that optimize operations and enhance customer experience. Adept at bridging technical and business teams to align initiatives, inform strategic decisions, and foster innovation through storytelling, data visualization, and design thinking.</p>
+          <p class="output"><strong>Work Experience</strong></p>
+          <p class="output"><u>Continuous Improvement & Training Analyst | Barry Callebaut</u><br>
+          June 2024 - Present<br>
+          • Led the ETL process for commercial dashboards: extracted data from SAP, transformed datasets using Power Query and VBA, and visualized insights in Power BI, cutting report time by 90%.<br>
+          • Developed automations for document handling in collaboration with Customer Service and Sales teams, reducing manual work by 95%.<br>
+          • Defined and implemented KPIs aligned with commercial and supply chain operations to inform strategic planning and continuous improvement initiatives.<br>
+          • Facilitated cross-functional workshops to identify operational bottlenecks and co-create strategic action plans using Lean methodology.</p>
+          <p class="output"><u>Business Analyst - Business Intelligence | Banregio</u><br>
+          March 2023 - June 2024<br>
+          • Optimized data structures and reporting workflows, reducing operational costs by 43% while preserving data accuracy.<br>
+          • Built and deployed real-time dashboards consolidating KPIs across departments, enabling proactive, strategic decision-making.<br>
+          • Designed and implemented a predictive NPS model in Python, replacing third-party analytics, increasing forecast accuracy, and saving 80% in annual costs.<br>
+          • Partnered with business leaders to translate data insights into strategic initiatives enhancing customer engagement and operational efficiency.</p>
+          <p class="output"><u>Business Analyst, Subject Matter Expert - Comcast | Teleperformance</u><br>
+          January 2019 - January 2023<br>
+          • Spearheaded a global CX improvement program using Lean Six Sigma, improving NPS by 20% across regions through strategic process standardization.<br>
+          • Developed a comprehensive performance metrics system integrating multiple channels and KPIs, enabling continuous measurement and strategic refinement.<br>
+          • Led workshops with global stakeholders to translate analytics into actionable strategic plans.<br>
+          • Served as liaison between technical teams and business units to drive scalable, strategy-aligned implementations.</p>
+          <p class="output"><strong>Education</strong><br>
+          Bachelor's Degree in International Business and Commerce - TecMilenio University | 2022<br>
+          Engineer Degree in Software Development - UANL | 2017 (Incomplete)</p>
+          <p class="output"><strong>Certifications</strong><br>
+          Google Project Management: Professional Certificate | Google (August, 2025)<br>
+          Medallia Customer Experience Professional Certification | Medallia (2024)<br>
+          Market Intelligence Certification | TecMilenio (2022)</p>
+          <p class="output"><strong>Core Skills</strong><br>
+          Strategic Data Analysis & Insights<br>
+          Process Automation & Optimization (VBA, Python, Power Automate)<br>
+          Dashboard Development (Power BI, Excel)<br>
+          Predictive Modeling & Forecasting<br>
+          Data Storytelling & Visualization<br>
+          Cross-Functional Collaboration & Team Alignment<br>
+          Customer Experience Strategy & Improvement<br>
+          Lean Six Sigma & Continuous Improvement<br>
+          Business & Digital Transformation</p>
+          <p class="output"><strong>Languages</strong><br>
+          Spanish, Native<br>
+          English, Fluent</p>
+        </div>
       </div>
     </div>
   </div>
@@ -393,7 +415,7 @@
       const sunIcon = document.querySelector('.sun-icon');
       const moonIcon = document.querySelector('.moon-icon');
       const nav = document.querySelector('.nav-header');
-      const pages = ['main', 'curriculum', 'p1', 'p2', 'p3'];
+      const pages = ['main', 'p1', 'p2', 'p3', 'curriculum'];
 
       const saved = localStorage.getItem('darkMode');
       const isDark = saved !== 'false';
@@ -448,3 +470,5 @@
       showSection('main');
     });
   </script>
+</body>
+</html>
