@@ -2,7 +2,7 @@
 <html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dante Martinez | Black Noir Portfolio</title>
   <style>
     :root {
@@ -23,7 +23,11 @@
       --panel: rgba(255,255,255,0.95);
       --border: rgba(0,0,0,0.1);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
       background: var(--bg);
       color: var(--fg);
@@ -37,25 +41,35 @@
       justify-content: center;
       transition: background 0.3s, color 0.3s;
     }
-    body::before, body::after {
+    body::before,
+    body::after {
       pointer-events: none;
       position: fixed;
       content: '';
-      top:0; left:0; width:100%; height:100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
     body::before {
-      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGCYAQAAjQAPExs/vAAAAABJRU5ErkJggg==') repeat;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGCYAQAAjQAPExs/vAAAAABJRU5ErkJggg==')
+        repeat;
       opacity: var(--noise-opacity);
       transition: opacity 0.3s;
     }
     body::after {
-      background: linear-gradient(rgba(0,0,0,var(--scanline-opacity)) 50%, transparent 50%);
+      background: linear-gradient(rgba(0, 0, 0, var(--scanline-opacity)) 50%, transparent 50%);
       background-size: 100% 2px;
       transition: background 0.3s;
     }
     @keyframes flicker {
-      0%,100% { opacity: calc(1 - var(--flicker-opacity)); }
-      50% { opacity: 1; }
+      0%,
+      100% {
+        opacity: calc(1 - var(--flicker-opacity));
+      }
+      50% {
+        opacity: 1;
+      }
     }
 
     .terminal {
@@ -64,7 +78,7 @@
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -77,28 +91,38 @@
       align-items: center;
       padding: 0 1rem;
       height: 2.5rem;
-      background: rgba(30,30,30,0.8);
+      background: rgba(30, 30, 30, 0.8);
       border-bottom: 1px solid var(--border);
       transition: background 0.3s, border 0.3s;
+      gap: 1rem;
     }
     [data-theme='light'] .window-header {
-      background: rgba(240,240,240,0.8);
+      background: rgba(240, 240, 240, 0.8);
+    }
+
+    .switch-wrapper {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-right: 0;
     }
 
     .title {
-      flex: 0 0 auto;
+      flex: 1 1 auto;
       text-align: center;
       color: var(--fg);
       opacity: 0.8;
       font-size: var(--font-size);
       font-family: var(--font-family);
-      margin-right: auto;
     }
 
     .nav-header {
+      flex: 0 0 auto;
       display: flex;
       gap: 0.25rem;
       margin-left: auto;
+      align-items: center;
     }
 
     .nav-header a {
@@ -111,8 +135,9 @@
       font-size: var(--font-size);
     }
 
-    .nav-header a:hover, .nav-header a.active {
-      background: rgba(255,255,255,0.1);
+    .nav-header a:hover,
+    .nav-header a.active {
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .content {
@@ -126,7 +151,7 @@
     }
 
     .content::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 3px;
     }
 
@@ -148,11 +173,18 @@
     }
 
     @keyframes blink {
-      0%,50% { opacity: 1; }
-      51%,100% { opacity: 0; }
+      0%,
+      50% {
+        opacity: 1;
+      }
+      51%,
+      100% {
+        opacity: 0;
+      }
     }
 
-    .output, .comment {
+    .output,
+    .comment {
       margin-bottom: 1rem;
       line-height: 1.4;
     }
@@ -163,28 +195,22 @@
     }
 
     /* Switch glassmorphism + sun & moon icon SVG */
-    .switch-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-right: 1rem;
-    }
-
-    .moon-icon svg {
+    .icon {
       width: 18px;
       height: 18px;
-      transition: stroke 0.3s;
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
+      transition: opacity 0.3s;
+      stroke: currentColor;
+      fill: none;
     }
 
-    [data-theme='dark'] .moon-icon svg {
-      stroke: #fff;
+    .moon-icon {
+      color: #fff;
     }
-
-    [data-theme='light'] .moon-icon svg {
-      stroke: #000;
+    [data-theme='light'] .moon-icon {
+      color: #000;
     }
 
     .toggle-switch {
@@ -194,11 +220,11 @@
       height: 24px;
     }
 
-    .toggle-switch .toggle-input {
+    .toggle-switch input {
       display: none;
     }
 
-    .toggle-switch .toggle-label {
+    .toggle-switch label {
       position: absolute;
       top: 0;
       left: 0;
@@ -212,8 +238,8 @@
       transition: background 0.3s;
     }
 
-    .toggle-switch .toggle-label::before {
-      content: "";
+    .toggle-switch label::before {
+      content: '';
       position: absolute;
       top: 2px;
       left: 2px;
@@ -225,124 +251,47 @@
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
     }
 
-    .toggle-switch .toggle-input:checked + .toggle-label {
+    .toggle-switch input:checked + label {
       background: rgba(255, 255, 255, 0.2);
     }
 
-    .toggle-switch .toggle-input:checked + .toggle-label::before {
+    .toggle-switch input:checked + label::before {
       transform: translateX(18px);
     }
 
-    [data-theme="light"] .toggle-switch .toggle-label {
+    [data-theme='light'] .toggle-switch label {
       background: rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
     }
 
-    [data-theme="light"] .toggle-switch .toggle-label::before {
+    [data-theme='light'] .toggle-switch label::before {
       background-color: var(--fg);
     }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const root = document.documentElement;
-      const saved = localStorage.getItem('darkMode');
-      const isDark = saved !== 'false';
-
-      // SVG icon definitions
-      const moonSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/>
-        </svg>
-      `;
-
-      const sunSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="5"/>
-          <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.41-1.41M6.46 6.46 5.05 5.05m12.02 0-1.41 1.41M6.46 17.54l-1.41 1.41"/>
-        </svg>
-      `;
-
-      // Switch + Icon
-      const switchWrapper = document.createElement('div');
-      switchWrapper.className = 'switch-wrapper';
-
-      const moonIcon = document.createElement('span');
-      moonIcon.className = 'moon-icon';
-      moonIcon.innerHTML = isDark ? moonSVG : sunSVG;
-
-      const switchDiv = document.createElement('div');
-      switchDiv.className = 'toggle-switch';
-
-      const toggle = document.createElement('input');
-      toggle.type = 'checkbox';
-      toggle.id = 'toggleTheme';
-      toggle.className = 'toggle-input';
-
-      const label = document.createElement('label');
-      label.className = 'toggle-label';
-      label.htmlFor = 'toggleTheme';
-
-      switchDiv.append(toggle, label);
-      switchWrapper.append(moonIcon, switchDiv);
-
-      // Nav links
-      const pages = ['main','p1','p2','p3'];
-      const nav = document.createElement('div');
-      nav.className = 'nav-header';
-      pages.forEach(id => {
-        const a = document.createElement('a');
-        a.href = '#';
-        a.id = 'link-' + id;
-        a.textContent = id === 'main' ? 'Main' : 'Proyecto ' + id.slice(1);
-        a.addEventListener('click', e => {
-          e.preventDefault();
-          show(id);
-        });
-        nav.append(a);
-      });
-
-      // Insert
-      const header = document.querySelector('.window-header');
-      header.append(switchWrapper);
-      header.append(nav);
-      const title = document.createElement('div');
-      title.className = 'title';
-      title.textContent = 'Windows PowerShell';
-      header.insertBefore(title, header.children[1]);
-
-      // Theme update
-      const update = () => {
-        if (toggle.checked) {
-          root.setAttribute('data-theme','light');
-          localStorage.setItem('darkMode','false');
-          moonIcon.innerHTML = sunSVG;
-        } else {
-          root.setAttribute('data-theme','dark');
-          localStorage.setItem('darkMode','true');
-          moonIcon.innerHTML = moonSVG;
-        }
-      };
-      toggle.checked = !isDark;
-      update();
-      toggle.addEventListener('change', update);
-
-      // Show
-      function show(page) {
-        pages.forEach(id => {
-          document.getElementById(id).style.display = 'none';
-          document.getElementById('link-' + id).classList.remove('active');
-        });
-        document.getElementById(page).style.display = 'block';
-        document.getElementById('link-' + page).classList.add('active');
-      }
-
-      show('main');
-    });
-  </script>
 </head>
 <body>
   <div class="terminal">
-    <div class="window-header"></div>
+    <div class="window-header">
+      <div class="switch-wrapper" aria-label="Cambiar tema claro/oscuro">
+        <!-- Luna para modo oscuro -->
+        <svg class="icon moon-icon" viewBox="0 0 24 24" aria-hidden="true" role="img">
+          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+        </svg>
+        <!-- Sol para modo claro -->
+        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true" role="img" style="display:none;">
+          <circle cx="12" cy="12" r="5" />
+          <path
+            d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.41-1.41M6.46 6.46 5.05 5.05m12.02 0-1.41 1.41M6.46 17.54l-1.41 1.41"
+          />
+        </svg>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggleTheme" />
+          <label for="toggleTheme" tabindex="0"></label>
+        </div>
+      </div>
+      <div class="title">Windows PowerShell</div>
+      <nav class="nav-header" role="navigation" aria-label="Navegación principal"></nav>
+    </div>
     <div class="content">
       <div id="main" class="section">
         <p class="cmd">show about</p>
@@ -351,17 +300,87 @@
       </div>
       <div id="p1" class="section" style="display:none;">
         <p class="cmd">cat proyecto1.txt</p>
-        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nibh sit amet facilisis scelerisque...</p>
+        <p class="output">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nibh sit amet facilisis
+          scelerisque...
+        </p>
       </div>
       <div id="p2" class="section" style="display:none;">
         <p class="cmd">open dashboard.md</p>
-        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at lacus sit amet enim aliquet aliquet...</p>
+        <p class="output">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at lacus sit amet enim aliquet aliquet...
+        </p>
       </div>
       <div id="p3" class="section" style="display:none;">
         <p class="cmd">run app_summary</p>
-        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet magna sit amet dolor sollicitudin...</p>
+        <p class="output">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet magna sit amet dolor sollicitudin...
+        </p>
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.documentElement;
+      const toggle = document.getElementById('toggleTheme');
+      const sunIcon = document.querySelector('.sun-icon');
+      const moonIcon = document.querySelector('.moon-icon');
+      const nav = document.querySelector('.nav-header');
+      const pages = ['main', 'p1', 'p2', 'p3'];
+
+      // Cargar tema guardado o por defecto
+      const saved = localStorage.getItem('darkMode');
+      const isDark = saved !== 'false';
+
+      // Inicializar toggle y mostrar iconos
+      toggle.checked = !isDark;
+      updateTheme();
+
+      toggle.addEventListener('change', updateTheme);
+
+      // Crear links de navegación
+      pages.forEach((id) => {
+        const a = document.createElement('a');
+        a.href = '#';
+        a.id = 'link-' + id;
+        a.textContent = id === 'main' ? 'Main' : 'Proyecto ' + id.slice(1);
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          showSection(id);
+        });
+        nav.appendChild(a);
+      });
+
+      function updateTheme() {
+        if (toggle.checked) {
+          root.setAttribute('data-theme', 'light');
+          localStorage.setItem('darkMode', 'false');
+          sunIcon.style.display = 'inline';
+          moonIcon.style.display = 'none';
+        } else {
+          root.setAttribute('data-theme', 'dark');
+          localStorage.setItem('darkMode', 'true');
+          sunIcon.style.display = 'none';
+          moonIcon.style.display = 'inline';
+        }
+      }
+
+      function showSection(id) {
+        pages.forEach((pageId) => {
+          const section = document.getElementById(pageId);
+          const link = document.getElementById('link-' + pageId);
+          if (pageId === id) {
+            section.style.display = 'block';
+            link.classList.add('active');
+          } else {
+            section.style.display = 'none';
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      showSection('main');
+    });
+  </script>
 </body>
 </html>
