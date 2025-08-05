@@ -22,18 +22,7 @@
       --border: rgba(0,0,0,0.1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'Consolas', monospace;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s, color 0.3s;
-    }
+    body { background: var(--bg); color: var(--fg); font-family: 'Consolas', monospace; height: 100vh; width: 100vw; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: background 0.3s, color 0.3s; }
     body::before, body::after { pointer-events: none; position: fixed; content: ''; top:0; left:0; width:100%; height:100%; }
     body::before { background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGCYAQAAjQAPExs/vAAAAABJRU5ErkJggg==') repeat; opacity: var(--noise-opacity); transition: opacity 0.3s; }
     body::after { background: linear-gradient(rgba(0,0,0,var(--scanline-opacity)) 50%, transparent 50%); background-size: 100% 2px; transition: background 0.3s; }
@@ -67,7 +56,6 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', ()=>{
-      // Theme switch
       const root = document.documentElement;
       const saved = localStorage.getItem('darkMode');
       const isDark = saved !== 'false';
@@ -83,17 +71,16 @@
       };
       toggle.checked = !isDark;
       update(); toggle.addEventListener('change',update);
-      // Navigation
+      // Nav
       const pages=['main','p1','p2','p3'];
       const nav = document.createElement('nav'); nav.className='nav-header';
       pages.forEach(id=>{
         const a=document.createElement('a'); a.href='#'; a.id='link-'+id; a.textContent = id==='main' ? 'Main' : 'Proyecto '+id.slice(1);
-        a.addEventListener('click',e=>{e.preventDefault(); show(id);});
-        nav.append(a);
+        a.addEventListener('click',e=>{e.preventDefault(); show(id);}); nav.append(a);
       });
       document.querySelector('.window-header').append(nav);
       function show(page){
-        pages.forEach(id=>{ document.getElementById(id).style.display='none'; document.getElementById('link-'+id).classList.remove('active'); });
+        pages.forEach(id=>{document.getElementById(id).style.display='none'; document.getElementById('link-'+id).classList.remove('active');});
         document.getElementById(page).style.display='block'; document.getElementById('link-'+page).classList.add('active');
       }
       show('main');
@@ -109,22 +96,25 @@
       <div class="title">Windows PowerShell</div>
     </div>
     <div class="content">
-      <p class="cmd">show about</p>
-      <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
-      <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
       <div id="main" class="section">
-        <p class="output">Bienvenido a mi Black Edition Landing Page.</p>
-        <p class="output">Minimalismo absoluto, estética noir y toques de consola.</p>
-        <p class="comment"># Selecciona un proyecto arriba.</p>
+        <p class="cmd">show about</p>
+        <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
+        <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
       </div>
       <div id="p1" class="section" style="display:none;">
-        <p class="output"><strong>Proyecto 1:</strong> Artículo de Investigación en formato consola con Lean Six Sigma.</p>
+        <p class="cmd">cat proyecto1.txt</p>
+        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nibh sit amet facilisis scelerisque, urna massa vehicula ligula, eu vehicula purus justo eu augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed id magna vitae nibh finibus sagittis.</p>
+        <p class="output">Mauris commodo, leo a aliquet egestas, nulla tellus convallis ligula, sit amet faucibus purus lectus non ligula. Integer sit amet purus nec diam feugiat volutpat. Cras et tortor nec ligula efficitur tincidunt.</p>
       </div>
       <div id="p2" class="section" style="display:none;">
-        <p class="output"><strong>Proyecto 2:</strong> Dashboard interactivo con Power BI y visualizaciones inmersivas.</p>
+        <p class="cmd">open dashboard.md</p>
+        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at lacus sit amet enim aliquet aliquet. Nulla facilisi. Ut vitae ex a purus malesuada faucibus.</p>
+        <p class="output">Suspendisse potenti. Vivamus efficitur libero sed justo imperdiet, nec convallis erat fermentum. Proin auctor metus a neque hendrerit, vitae mollis orci fermentum.</p>
       </div>
       <div id="p3" class="section" style="display:none;">
-        <p class="output"><strong>Proyecto 3:</strong> Aplicación web React+Node.js para gestión de tareas en tiempo real.</p>
+        <p class="cmd">run app_summary</p>
+        <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet magna sit amet dolor sollicitudin tincidunt. Curabitur sit amet urna ac dolor fermentum pretium.</p>
+        <p class="output">Nam eu purus id eros ullamcorper fermentum. Etiam vehicula sapien ac mi fermentum, et tincidunt nisl suscipit. Donec non metus nec risus tristique tincidunt.</p>
       </div>
     </div>
   </div>
