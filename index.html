@@ -45,7 +45,7 @@
     .window-header { display:flex; align-items:center; justify-content: space-between; height:2.5rem; background:rgba(30,30,30,0.8); padding:0 1rem; border-bottom:1px solid var(--border); transition:background 0.3s, border 0.3s; }
     [data-theme='light'] .window-header { background:rgba(240,240,240,0.8); }
     .title { flex:1; text-align:center; color:var(--fg); opacity:0.8; font-size:var(--font-size); font-family:var(--font-family); }
-    .theme-switch { display:flex; align-items:center; }
+    .theme-switch { display:flex; align-items:center; margin-right:1rem; }
     .theme-switch input { display:none; }
     .theme-switch label { width:1.5rem; height:1.5rem; border:1px solid var(--fg); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; }
     .theme-switch label::before { content:'☾'; font-size:1rem; color:var(--fg); }
@@ -68,25 +68,39 @@
       const root = document.documentElement;
       const saved = localStorage.getItem('darkMode');
       const isDark = saved !== 'false';
-      // Add switch
+      // Create switch and nav elements
       const toggle = document.createElement('input'); toggle.type='checkbox'; toggle.id='toggleTheme';
       const label = document.createElement('label'); label.htmlFor='toggleTheme';
-      const switchDiv = document.createElement('div'); switchDiv.className='theme-switch';
-      switchDiv.append(toggle, label);
+      const switchDiv = document.createElement('div'); switchDiv.className='theme-switch'; switchDiv.append(toggle, label);
+      const pages=['main','p1','p2','p3'];
+      const nav = document.createElement('div'); nav.className='nav-header';
+      pages.forEach(id=>{
+        const a=document.createElement('a'); a.href='#'; a.id='link-'+id;
+        a.textContent = id==='main' ? 'Main' : 'Proyecto '+id.slice(1);
+        a.addEventListener('click', e=>{ e.preventDefault(); show(id); });
+        nav.append(a);
+      });
+      // Insert into header
       const header = document.querySelector('.window-header');
-      header.append(switchDiv);
+      header.insertBefore(switchDiv, header.firstChild);
+      header.insertBefore(document.querySelector('.title'), switchDiv.nextSibling);
+      header.append(nav);
+      // Theme update
       const update = ()=>{
         if(toggle.checked){ root.setAttribute('data-theme','light'); localStorage.setItem('darkMode','false'); }
         else{ root.setAttribute('data-theme','dark'); localStorage.setItem('darkMode','true'); }
       };
       toggle.checked = !isDark;
       update(); toggle.addEventListener('change', update);
-      // Nav links
-      const pages=['main','p1','p2','p3'];
-      const nav = document.createElement('div'); nav.className='nav-header';
-      pages.forEach(id=>{ const a=document.createElement('a'); a.href='#'; a.id='link-'+id; a.textContent = id==='main' ? 'Main' : 'Proyecto '+id.slice(1); a.addEventListener('click', e=>{ e.preventDefault(); show(id); }); nav.append(a); });
-      header.append(nav);
-      function show(page){ pages.forEach(id=>{ document.getElementById(id).style.display='none'; document.getElementById('link-'+id).classList.remove('active'); }); document.getElementById(page).style.display='block'; document.getElementById('link-'+page).classList.add('active'); }
+      // Show sections
+      function show(page){
+        pages.forEach(id=>{
+          document.getElementById(id).style.display='none';
+          document.getElementById('link-'+id).classList.remove('active');
+        });
+        document.getElementById(page).style.display='block';
+        document.getElementById('link-'+page).classList.add('active');
+      }
       show('main');
     });
   </script>
