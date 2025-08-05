@@ -1,414 +1,150 @@
-<!DOCTYPE html> 
-<html lang="es" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dante Martinez | Black Noir Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terminal Type Effect</title>
   <style>
-    :root {
-      --bg: #000;
-      --fg: #e0e0e0;
-      --panel: rgba(20,20,20,0.9);
-      --border: rgba(255,255,255,0.1);
-      --noise-opacity: 0.03;
-      --scanline-opacity: 0.06;
-      --cursor: '\2588';
-      --flicker-opacity: 0.04;
-
-      --font-family: 'Consolas', monospace;
-
-      /* Tamaños de fuente base */
-      --font-size-base: 0.9rem;
-      --font-size-title: calc(var(--font-size-base) * 1.3);
-      --font-size-cmd: calc(var(--font-size-base) * 1.1);
-      --font-size-content: var(--font-size-base);
-      --font-size-comment: calc(var(--font-size-base) * 0.9);
-    }
-    [data-theme='light'] {
-      --bg: #f5f5f5;
-      --fg: #111;
-      --panel: rgba(255,255,255,0.95);
-      --border: rgba(0,0,0,0.1);
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: var(--font-family);
-      font-size: var(--font-size-base);
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s, color 0.3s;
-    }
-    body::before,
-    body::after {
-      pointer-events: none;
-      position: fixed;
-      content: '';
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-    body::before {
-      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGCYAQAAjQAPExs/vAAAAABJRU5ErkJggg==')
-        repeat;
-      opacity: var(--noise-opacity);
-      transition: opacity 0.3s;
-    }
-    body::after {
-      background: linear-gradient(rgba(0, 0, 0, var(--scanline-opacity)) 50%, transparent 50%);
-      background-size: 100% 2px;
-      transition: background 0.3s;
-    }
-    @keyframes flicker {
-      0%, 100% {
-        opacity: calc(1 - var(--flicker-opacity));
-      }
-      50% {
-        opacity: 1;
-      }
+      margin: 0;
+      font-family: monospace;
+      background-color: #000;
+      color: #0f0;
     }
 
     .terminal {
-      width: 95vw;
-      height: 90vh;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      animation: flicker 4s infinite;
-      transition: background 0.3s, border 0.3s;
+      width: 100%;
+      max-width: 1400px;
+      height: 90vh;
+      margin: 0 auto;
+      border: 2px solid #0f0;
+      box-sizing: border-box;
     }
 
-    .window-header {
+    .nav {
       display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      height: 2.5rem;
-      background: rgba(30, 30, 30, 0.8);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s, border 0.3s;
-      gap: 1rem;
-    }
-    [data-theme='light'] .window-header {
-      background: rgba(240, 240, 240, 0.8);
+      border-bottom: 2px solid #0f0;
+      padding: 0.5rem;
     }
 
-    .switch-wrapper {
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-right: 0;
-    }
-
-    .title {
-      flex: 1 1 auto;
-      text-align: center;
-      color: var(--fg);
-      opacity: 0.8;
-      font-size: var(--font-size-title);
-      font-family: var(--font-family);
-    }
-
-    .nav-header {
-      flex: 0 0 auto;
-      display: flex;
-      gap: 0.25rem;
-      margin-left: auto;
-      align-items: center;
-    }
-
-    .nav-header a {
-      color: var(--fg);
+    .nav a {
+      color: #0f0;
       text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      transition: background 0.2s;
-      font-family: var(--font-family);
-      font-size: var(--font-size-base);
+      margin-right: 1rem;
+      cursor: pointer;
     }
 
-    .nav-header a:hover,
-    .nav-header a.active {
-      background: rgba(255, 255, 255, 0.1);
+    .nav a.active {
+      text-decoration: underline;
     }
 
     .content {
       flex: 1;
       overflow-y: auto;
-      padding: 1rem;
+      padding: 1rem 1rem;
     }
 
-    .content::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .content::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-    }
-
-    .cmd {
-      font-family: var(--font-family);
-      font-size: var(--font-size-cmd);
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-
-    .cmd::before {
-      content: 'PS C:\\Portfolio> ';
-    }
-
-    .cmd::after {
-      content: var(--cursor);
-      margin-left: 2px;
-      animation: blink 1s steps(2) infinite;
-    }
-
-    @keyframes blink {
-      0%, 50% {
-        opacity: 1;
-      }
-      51%, 100% {
-        opacity: 0;
-      }
-    }
-
-    .output {
-      font-size: var(--font-size-content);
-      margin-bottom: 1rem;
-      line-height: 1.4;
-      white-space: pre-wrap;
-    }
-
-    .comment {
-      font-size: var(--font-size-comment);
-      color: #aaa;
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-
-    /* Switch glassmorphism + sun & moon icon SVG */
-    .icon {
-      width: 18px;
-      height: 18px;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: opacity 0.3s;
-      stroke: currentColor;
-      fill: none;
-    }
-
-    .moon-icon {
-      color: #fff;
-    }
-    [data-theme='light'] .moon-icon {
-      color: #000;
-    }
-
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 42px;
-      height: 24px;
-    }
-
-    .toggle-switch input {
+    .section {
       display: none;
     }
 
-    .toggle-switch label {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 34px;
-      backdrop-filter: blur(4px);
-      box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      transition: background 0.3s;
+    .section.active {
+      display: block;
     }
 
-    .toggle-switch label::before {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 20px;
-      height: 20px;
-      background-color: var(--fg);
-      border-radius: 50%;
-      transition: transform 0.3s, background-color 0.3s;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    .cmd {
+      color: #0ff;
     }
 
-    .toggle-switch input:checked + label {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .toggle-switch input:checked + label::before {
-      transform: translateX(18px);
-    }
-
-    [data-theme='light'] .toggle-switch label {
-      background: rgba(0, 0, 0, 0.1);
-      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
-    }
-
-    [data-theme='light'] .toggle-switch label::before {
-      background-color: var(--fg);
+    .output {
+      color: #fff;
+      margin-bottom: 1rem;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
   <div class="terminal">
-    <div class="window-header">
-      <div class="switch-wrapper" aria-label="Cambiar tema claro/oscuro">
-        <!-- Luna para modo oscuro -->
-        <svg class="icon moon-icon" viewBox="0 0 24 24" aria-hidden="true" role="img">
-          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
-        </svg>
-        <!-- Sol para modo claro -->
-        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true" role="img" style="display:none;">
-          <circle cx="12" cy="12" r="5" />
-          <path
-            d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.41-1.41M6.46 6.46 5.05 5.05m12.02 0-1.41 1.41M6.46 17.54l-1.41 1.41"
-          />
-        </svg>
-        <div class="toggle-switch">
-          <input type="checkbox" id="toggleTheme" />
-          <label for="toggleTheme" tabindex="0"></label>
-        </div>
-      </div>
-      <div class="title">Windows PowerShell</div>
-      <nav class="nav-header" role="navigation" aria-label="Navegación principal"></nav>
+    <div class="nav">
+      <a id="link-home" onclick="showSection('home')">Home</a>
+      <a id="link-about" onclick="showSection('about')">About</a>
+      <a id="link-contact" onclick="showSection('contact')">Contact</a>
     </div>
     <div class="content">
-      <div id="main" class="section">
-        <p class="cmd">show about</p>
-        <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
-        <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
+      <div id="home" class="section active">
+        <div class="cmd" data-original="> Welcome to the terminal interface."></div>
+        <div class="output" data-original="This is the home section.\nFeel free to explore."></div>
       </div>
-      <div id="p1" class="section" style="display:none;">
-        <p class="cmd">cat proyecto1.txt</p>
-        <p class="output">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nibh sit amet facilisis
-          scelerisque...
-        </p>
+      <div id="about" class="section">
+        <div class="cmd" data-original="> About this project"></div>
+        <div class="output" data-original="This interface was created to simulate a terminal.\nIt uses HTML, CSS, and JS."></div>
       </div>
-      <div id="p2" class="section" style="display:none;">
-        <p class="cmd">open dashboard.md</p>
-        <p class="output">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at lacus sit amet enim aliquet aliquet...
-        </p>
-      </div>
-      <div id="p3" class="section" style="display:none;">
-        <p class="cmd">run app_summary</p>
-        <p class="output">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet magna sit amet dolor sollicitudin...
-        </p>
+      <div id="contact" class="section">
+        <div class="cmd" data-original="> Contact Info"></div>
+        <div class="output" data-original="Email: hello@example.com\nTwitter: @terminal_ui"></div>
       </div>
     </div>
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const root = document.documentElement;
-      const toggle = document.getElementById('toggleTheme');
-      const sunIcon = document.querySelector('.sun-icon');
-      const moonIcon = document.querySelector('.moon-icon');
-      const nav = document.querySelector('.nav-header');
-      const pages = ['main', 'p1', 'p2', 'p3'];
 
-      // Guardar texto original para cada sección para no perderlo al limpiar
+  <script>
+    const pages = ['home', 'about', 'contact'];
+
+    async function typeText(element, text, delay = 10) {
+      element.textContent = '';
+      for (let i = 0; i < text.length; i++) {
+        element.textContent += text[i];
+        await new Promise((r) => setTimeout(r, delay));
+      }
+    }
+
+    async function showSection(id) {
+      pages.forEach((pageId) => {
+        const section = document.getElementById(pageId);
+        const link = document.getElementById('link-' + pageId);
+        if (pageId === id) {
+          section.classList.add('active');
+          link.classList.add('active');
+        } else {
+          section.classList.remove('active');
+          link.classList.remove('active');
+        }
+      });
+
+      const activeSection = document.getElementById(id);
+      if (!activeSection) return;
+
+      const cmdElem = activeSection.querySelector('.cmd');
+      const outputElem = activeSection.querySelector('.output');
+
+      if (cmdElem && outputElem) {
+        const cmdText = cmdElem.getAttribute('data-original') || '';
+        const outputText = outputElem.getAttribute('data-original') || '';
+
+        cmdElem.textContent = '';
+        outputElem.textContent = '';
+
+        await typeText(cmdElem, cmdText, 20);
+        await new Promise((r) => setTimeout(r, 100));
+        await typeText(outputElem, outputText, 10);
+      }
+    }
+
+    // Inicializar los textos visibles al cargar
+    window.addEventListener('DOMContentLoaded', () => {
       pages.forEach(id => {
         const section = document.getElementById(id);
-        if (section) {
-          const cmdElem = section.querySelector('.cmd');
-          const outputElem = section.querySelector('.output');
-          if (cmdElem) cmdElem.setAttribute('data-original', cmdElem.textContent.trim());
-          if (outputElem) outputElem.setAttribute('data-original', outputElem.textContent.trim());
-        }
-      });
-
-      // Cargar tema guardado o por defecto
-      const saved = localStorage.getItem('darkMode');
-      const isDark = saved !== 'false';
-
-      toggle.checked = !isDark;
-      updateTheme();
-
-      toggle.addEventListener('change', updateTheme);
-
-      // Crear links de navegación
-      pages.forEach((id) => {
-        const a = document.createElement('a');
-        a.href = '#';
-        a.id = 'link-' + id;
-        a.textContent = id === 'main' ? 'Main' : 'Proyecto ' + id.slice(1);
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          showSection(id);
-        });
-        nav.appendChild(a);
-      });
-
-      async function typeText(element, text, delay = 10) {
-        element.textContent = '';
-        for (let i = 0; i < text.length; i++) {
-          element.textContent += text[i];
-          await new Promise((r) => setTimeout(r, delay));
-        }
-      }
-
-      async function showSection(id) {
-        pages.forEach((pageId) => {
-          const section = document.getElementById(pageId);
-          const link = document.getElementById('link-' + pageId);
-          if (pageId === id) {
-            section.style.display = 'block';
-            link.classList.add('active');
-          } else {
-            section.style.display = 'none';
-            link.classList.remove('active');
-          }
-        });
-
-        const activeSection = document.getElementById(id);
-        if (!activeSection) return;
-
-        const cmdElem = activeSection.querySelector('.cmd');
-        const outputElem = activeSection.querySelector('.output');
+        const cmdElem = section.querySelector('.cmd');
+        const outputElem = section.querySelector('.output');
 
         if (cmdElem && outputElem) {
-          const cmdText = cmdElem.getAttribute('data-original');
-          const outputText = outputElem.getAttribute('data-original');
-
-          cmdElem.textContent = '';
-          outputElem.textContent = '';
-
-          await typeText(cmdElem, cmdText, 20);
-          await new Promise((r) => setTimeout(r, 100));
-          await typeText(outputElem, outputText, 10);
+          const cmdText = cmdElem.getAttribute('data-original') || '';
+          const outputText = outputElem.getAttribute('data-original') || '';
+          cmdElem.textContent = cmdText;
+          outputElem.textContent = outputText;
         }
-      }
-
-      showSection('main');
+      });
     });
   </script>
 </body>
