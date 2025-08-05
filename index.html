@@ -6,10 +6,11 @@
   <title>Dante Martinez | Black Edition</title>
   <style>
     :root {
-      --bg: #0a0a0a;
-      --fg: #f5f5f5;
-      --accent: #00f6ff;
-      --blur: 20px;
+      --bg: #000000;
+      --fg: #e0e0e0;
+      --panel-bg: rgba(20,20,20,0.8);
+      --border: rgba(255,255,255,0.05);
+      --blur: 16px;
       --radius: 1.5rem;
       --transition: 0.3s ease;
     }
@@ -29,34 +30,16 @@
       width: 95vw;
       max-width: 1000px;
       min-height: 80vh;
-      background: rgba(25,25,25,0.6);
+      background: var(--panel-bg);
       border-radius: var(--radius);
       padding: 2rem;
-      backdrop-filter: blur(var(--blur)) saturate(180%);
-      border: 1px solid rgba(0,255,255,0.2);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      backdrop-filter: blur(var(--blur));
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
       overflow: hidden;
       transition: transform var(--transition);
     }
-    .terminal:hover {
-      transform: translateY(-5px);
-    }
-    /* Animated gradient border */
-    .terminal:before {
-      content: '';
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      background: linear-gradient(60deg, #00f6ff, #ff00dd, #ffee00);
-      background-size: 300% 300%;
-      animation: gradientBG 6s ease infinite;
-      z-index: -1;
-      filter: blur(10px);
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    .terminal:hover { transform: translateY(-4px); }
     .terminal-header {
       position: absolute;
       top: 1rem; right: 1.5rem;
@@ -65,13 +48,12 @@
     nav {
       display: flex;
       gap: 0.75rem;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
       border-radius: 0.75rem;
       padding: 0.25rem 0.75rem;
       font-size: 0.9rem;
     }
     nav a {
-      position: relative;
       color: var(--fg);
       text-decoration: none;
       font-weight: 500;
@@ -79,19 +61,7 @@
       border-radius: 0.5rem;
       transition: background var(--transition), color var(--transition);
     }
-    nav a:hover, nav a.active {
-      background: var(--accent);
-      color: #000;
-    }
-    nav a.active:after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 50%; transform: translateX(-50%);
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
+    nav a:hover, nav a.active { background: rgba(255,255,255,0.08); }
     .terminal-content {
       margin-top: 4rem;
       overflow-y: auto;
@@ -109,30 +79,14 @@
       100% { transform: translateY(0); opacity: 0.9; }
     }
     .output, .comment { opacity: 0.85; }
-    .comment { font-style: italic; color: #ccc; }
-    .article {
-      line-height: 1.6;
-      margin-top: 1rem;
-      animation: fadeIn 1s ease;
-    }
-    .dashboard, video, img {
-      margin: 1rem 0;
-      border-radius: var(--radius);
-      overflow: hidden;
-      animation: fadeIn 1.2s ease;
-    }
+    .comment { font-style: italic; color: #bbb; }
+    .article { line-height: 1.6; margin-top: 1rem; animation: fadeIn 1s ease; }
+    video, img { margin: 1rem 0; border-radius: var(--radius); animation: fadeIn 1.2s ease; }
     .summary { margin-top: 1rem; list-style: none; padding-left: 1rem; }
-    .summary li::before { content: '→'; margin-right: 0.5rem; color: var(--accent); }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 0.85; }
-    }
-    /* Custom scrollbar */
+    .summary li::before { content: '•'; margin-right: 0.75rem; color: var(--fg); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.85; } }
     .terminal-content::-webkit-scrollbar { width: 6px; }
-    .terminal-content::-webkit-scrollbar-thumb {
-      background: rgba(0,255,255,0.2); border-radius: 3px;
-    }
-    /* Responsive adjustments */
+    .terminal-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
     @media (max-width: 700px) {
       .terminal { padding: 1rem; }
       nav { font-size: 0.8rem; }
@@ -162,12 +116,12 @@
       <div id="main">
         <p class="cmd">$ Dante Martinez --brief</p>
         <p class="output">Bienvenido a mi Black Edition Landing Page.</p>
-        <p class="output">El futuro del minimalismo cinematográfico en cada línea de código.</p>
+        <p class="output">Minimalismo absoluto sobre fondo negro.</p>
         <p class="comment"># Sobre mí</p>
         <div class="article">
-          <p>Soy Dante Martinez, analista de datos y storyteller digital. Mi enfoque: combinar estética terminal con narrativas inmersivas.</p>
+          <p>Soy Dante Martinez, analista de datos y storyteller digital. Fusiono narrativa y estética terminal, todo en clave black.</p>
         </div>
-        <!-- Video introductorio opcional -->
+        <!-- Video opcional -->
         <video controls poster="poster.jpg">
           <source src="intro.mp4" type="video/mp4">
           Tu navegador no soporta la etiqueta de video.
@@ -177,9 +131,9 @@
         <p class="cmd">$ cd Proyecto1</p>
         <p class="output">Proyecto 1: <strong>Artículo de Investigación</strong></p>
         <div class="article">
-          <p>Exploración de la narrativa académica en formato consola, integrando insights de Lean Six Sigma en un storytelling envolvente.</p>
+          <p>Exploro narrativa académica en formato consola, con insights de Lean Six Sigma envueltos en negro total.</p>
           <p>Tecnologías: HTML5, CSS3, JS</p>
-          <p>Objetivo: Mostrar datos y procesos con estilo noir.</p>
+          <p>Objetivo: Datos y procesos en modo noir.</p>
         </div>
       </div>
       <div id="proyecto2" style="display:none;">
@@ -188,17 +142,17 @@
         <div class="dashboard">
           <img src="dashboard-placeholder.png" alt="Vista previa de dashboard">
         </div>
-        <p class="comment"># Data-driven, interactivo y visualmente impactante.</p>
+        <p class="comment"># Data-driven y minimalista sobre negro.</p>
       </div>
       <div id="proyecto3" style="display:none;">
         <p class="cmd">$ cd Proyecto3</p>
         <p class="output">Proyecto 3: <strong>Resumen de Aplicación</strong></p>
         <ul class="summary">
-          <li>Gestión de tareas con seguimiento en tiempo real.</li>
+          <li>Gestión de tareas en tiempo real.</li>
           <li>Stack: React, Node.js, Tailwind.</li>
           <li>Estado: Beta pública.</li>
         </ul>
-        <p class="comment"># UX fluido, responsivo y minimalista.</p>
+        <p class="comment"># Experiencia fluida y monocromática.</p>
       </div>
     </div>
   </aside>
