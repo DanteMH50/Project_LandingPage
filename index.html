@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dante Martinez | Black Noir Portfolio</title>
   <style>
+    /* ================== Tokens ================== */
     :root {
       --bg: #000;
       --fg: #e0e0e0;
@@ -12,16 +13,24 @@
       --border: rgba(255,255,255,0.1);
       --noise-opacity: 0.03;
       --scanline-opacity: 0.06;
-      --cursor: '\2588';
       --flicker-opacity: 0.04;
-
-      --font-family: 'Consolas', monospace;
-
+      --font-family: 'Consolas', Monaco, Menlo, monospace;
       --font-size-base: 0.9rem;
       --font-size-title: calc(var(--font-size-base) * 1.3);
       --font-size-cmd: calc(var(--font-size-base) * 1.1);
       --font-size-content: var(--font-size-base);
       --font-size-comment: calc(var(--font-size-base) * 0.9);
+      --radius: 9px;
+      --elev: 0 8px 32px rgba(0,0,0,.7);
+      --glass: rgba(30,30,30,0.18);
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 1rem;
+      --space-4: 2rem;
+      --hdr-h: 2.5rem;
+      --switch-w: 42px; --switch-h: 24px; --switch-k: 20px;
+      --trans-fast: 0.2s;
+      --trans-med: 0.3s;
     }
 
     [data-theme='light'] {
@@ -29,291 +38,143 @@
       --fg: #111;
       --panel: rgba(255,255,255,0.95);
       --border: rgba(0,0,0,0.1);
+      --glass: rgba(255,255,255,0.18);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    /* Respeta usuarios que prefieren menos animación */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
     }
 
+    /* ================== Reset ================== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; }
+
+    /* ================== Layout base ================== */
     body {
       background: var(--bg);
       color: var(--fg);
       font-family: var(--font-family);
       font-size: var(--font-size-base);
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s, color 0.3s;
+      height: 100vh; width: 100vw; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--trans-med), color var(--trans-med);
     }
 
-    body::before,
-    body::after {
-      pointer-events: none;
-      position: fixed;
-      content: '';
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    body::before, body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none;
     }
-
     body::before {
       background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGCYAQAAjQAPExs/vAAAAABJRU5ErkJggg==') repeat;
       opacity: var(--noise-opacity);
-      transition: opacity 0.3s;
     }
-
     body::after {
-      background: linear-gradient(rgba(0, 0, 0, var(--scanline-opacity)) 50%, transparent 50%);
+      background: linear-gradient(rgba(0,0,0,var(--scanline-opacity)) 50%, transparent 50%);
       background-size: 100% 2px;
-      transition: background 0.3s;
     }
 
     @keyframes flicker {
-      0%, 100% {
-        opacity: calc(1 - var(--flicker-opacity));
-      }
-      50% {
-        opacity: 1;
-      }
+      0%,100% { opacity: calc(1 - var(--flicker-opacity)); }
+      50% { opacity: 1; }
     }
 
     .terminal {
-      width: 95vw;
-      height: 90vh;
+      width: 95vw; height: 90vh;
       background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--elev);
+      display: flex; flex-direction: column; overflow: hidden;
       animation: flicker 4s infinite;
-      transition: background 0.3s, border 0.3s;
+      transition: background var(--trans-med), border var(--trans-med);
       position: relative;
     }
 
     .window-header {
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      height: 2.5rem;
+      position: absolute; inset: 0 0 auto 0; height: var(--hdr-h);
+      display: flex; align-items: center; gap: var(--space-3);
+      padding: 0 var(--space-3);
       background: rgba(30, 30, 30, 0.8);
       border-bottom: 1px solid var(--border);
-      transition: background 0.3s, border 0.3s;
-      gap: 1rem;
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
+      transition: background var(--trans-med), border var(--trans-med);
       z-index: 2;
     }
+    [data-theme='light'] .window-header { background: rgba(240,240,240,0.8); }
 
-    [data-theme='light'] .window-header {
-      background: rgba(240, 240, 240, 0.8);
-    }
-
-    .switch-wrapper {
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-right: 0;
-    }
-
-    .title {
-      flex: 1 1 auto;
-      text-align: center;
-      color: var(--fg);
-      opacity: 0.8;
-      font-size: var(--font-size-title);
-      font-family: var(--font-family);
-    }
+    .switch-wrapper { display: flex; align-items: center; gap: var(--space-2); }
+    .title { flex: 1; text-align: center; opacity: .8; font-size: var(--font-size-title); }
 
     .nav-header {
-      flex: 0 0 auto;
-      display: flex;
-      gap: 0.25rem;
-      margin-left: auto;
-      align-items: center;
-      font-size: 0.85rem;
-      padding: 2px 8px;
+      display: flex; gap: var(--space-1); align-items: center;
+      font-size: .85rem; padding: 2px 8px; border-radius: 10px;
       background: rgba(255,255,255,0.03);
-      border-radius: 10px;
     }
-
     .nav-header a {
-      color: var(--fg);
-      text-decoration: none;
-      padding: 2px 8px;
-      border-radius: 5px;
-      transition: background 0.2s;
-      font-family: var(--font-family);
-      font-size: 0.85rem;
-      font-weight: 500;
-      background: none;
-      border: none;
-      letter-spacing: 0.5px;
+      text-decoration: none; padding: 2px 8px; border-radius: 5px;
+      transition: background var(--trans-fast);
+      font-size: .85rem; font-weight: 500; letter-spacing: .5px;
     }
-
-    .nav-header a:hover,
-    .nav-header a.active {
-      background: rgba(255, 255, 255, 0.10);
-      color: var(--fg);
+    .nav-header a:hover, .nav-header a.active {
+      background: rgba(255,255,255,0.10);
     }
 
     .content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 2.2rem 0 1rem 0;
-      margin-top: 2.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      flex: 1; overflow-y: auto;
+      padding: calc(var(--hdr-h) + var(--space-3)) 0 var(--space-3);
+      display: flex; justify-content: center; align-items: flex-start;
     }
 
     .inner-content {
-      width: 100%;
-      max-width: 750px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      /* Glass effect */
-      background: rgba(30,30,30,0.18);
+      width: 100%; max-width: 1250px; margin: 0 auto; padding: 0 var(--space-3);
+      background: var(--glass);
       border-radius: 10px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
       backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(2px);
-      transition: background 0.3s;
+      transition: background var(--trans-med);
     }
-    [data-theme='light'] .inner-content {
-      background: rgba(255,255,255,0.18);
-    }
+
+    /* ================== Terminal look ================== */
+    @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
 
     .cmd {
-      font-family: var(--font-family);
-      font-size: var(--font-size-cmd);
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      color: var(--fg);
+      font-size: var(--font-size-cmd); font-weight: 700; margin-bottom: .5rem;
     }
+    .cmd::before { content: 'PS C:\\Portfolio> '; }
+    .cmd::after { content: '\2588'; margin-left: 2px; animation: blink 1s steps(2) infinite; }
 
-    .cmd::before {
-      content: 'PS C:\\Portfolio> ';
-    }
+    .output { font-size: var(--font-size-content); margin-bottom: 1rem; line-height: 1.4; white-space: pre-wrap; }
+    .output a { text-decoration: underline; }
+    .comment { font-size: var(--font-size-comment); color: #aaa; font-style: italic; margin-bottom: 1rem; }
 
-    .cmd::after {
-      content: var(--cursor);
-      margin-left: 2px;
-      animation: blink 1s steps(2) infinite;
-    }
+    /* ================== Icons & switch ================== */
+    .icon { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sun-icon, .moon-icon { display: none; }
+    [data-theme='light'] .sun-icon { display: inline; }
+    [data-theme='dark'] .moon-icon { display: inline; }
 
-    @keyframes blink {
-      0%, 50% {
-        opacity: 1;
-      }
-      51%, 100% {
-        opacity: 0;
-      }
-    }
-
-    .output {
-      font-size: var(--font-size-content);
-      margin-bottom: 1rem;
-      line-height: 1.4;
-      white-space: pre-wrap;
-      color: var(--fg);
-    }
-
-    .output a {
-      color: var(--fg);
-      text-decoration: underline;
-    }
-
-    .comment {
-      font-size: var(--font-size-comment);
-      color: #aaa;
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-
-    .icon {
-      width: 18px;
-      height: 18px;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: opacity 0.3s;
-      stroke: currentColor;
-      fill: none;
-    }
-
-    .moon-icon {
-      color: var(--fg);
-    }
-
-    [data-theme='light'] .moon-icon {
-      color: #000;
-    }
-
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 42px;
-      height: 24px;
-    }
-
-    .toggle-switch input {
-      display: none;
-    }
-
+    .toggle-switch { position: relative; width: var(--switch-w); height: var(--switch-h); }
+    .toggle-switch input { display: none; }
     .toggle-switch label {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 34px;
-      backdrop-filter: blur(4px);
-      box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      transition: background 0.3s;
+      position: absolute; inset: 0; border-radius: 34px; cursor: pointer;
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(4px);
+      box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
+      transition: background var(--trans-med);
     }
-
     .toggle-switch label::before {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 20px;
-      height: 20px;
-      background-color: var(--fg);
-      border-radius: 50%;
-      transition: transform 0.3s, background-color 0.3s;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: var(--switch-k); height: var(--switch-k);
+      background-color: var(--fg); border-radius: 50%;
+      transition: transform var(--trans-med), background-color var(--trans-med), left var(--trans-med);
+      box-shadow: 0 2px 5px rgba(0,0,0,.4);
     }
+    .toggle-switch input:checked + label { background: rgba(255,255,255,0.2); }
+    .toggle-switch input:checked + label::before { transform: translateX(calc(var(--switch-w) - var(--switch-k) - 4px)); }
 
-    .toggle-switch input:checked + label {
-      background: rgba(255, 255, 255, 0.2);
-    }
+    [data-theme='light'] .toggle-switch label { background: rgba(0,0,0,0.1); box-shadow: inset 0 0 2px rgba(0,0,0,0.2); }
 
-    .toggle-switch input:checked + label::before {
-      transform: translateX(18px);
-    }
-
-    [data-theme='light'] .toggle-switch label {
-      background: rgba(0, 0, 0, 0.1);
-      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
-    }
-
-    [data-theme='light'] .toggle-switch label::before {
-      background-color: var(--fg);
-    }
+    /* ================== Sections ================== */
+    .section[hidden] { display: none !important; }
   </style>
 </head>
 <body>
@@ -321,20 +182,21 @@
     <div class="window-header">
       <div class="switch-wrapper" aria-label="Cambiar tema claro/oscuro">
         <svg class="icon moon-icon" viewBox="0 0 24 24" aria-hidden="true" role="img">
-          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/>
         </svg>
-        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true" role="img" style="display:none;">
-          <circle cx="12" cy="12" r="5" />
-          <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.41-1.41M6.46 6.46 5.05 5.05m12.02 0-1.41 1.41M6.46 17.54l-1.41 1.41" />
+        <svg class="icon sun-icon" viewBox="0 0 24 24" aria-hidden="true" role="img">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.95 6.95l-1.41-1.41M6.46 6.46 5.05 5.05m12.02 0-1.41 1.41M6.46 17.54l-1.41 1.41"/>
         </svg>
         <div class="toggle-switch">
           <input type="checkbox" id="toggleTheme" />
-          <label for="toggleTheme" tabindex="0"></label>
+          <label for="toggleTheme" tabindex="0" aria-label="Cambiar tema"></label>
         </div>
       </div>
       <div class="title">Project Landing</div>
       <nav class="nav-header" role="navigation" aria-label="Navegación principal"></nav>
     </div>
+
     <div class="content">
       <div class="inner-content">
         <div id="main" class="section">
@@ -343,24 +205,28 @@
           <p class="output">Dante Martinez | Data Analyst & Digital Storyteller.</p>
           <p class="comment"># Fusiono estilo noir y terminal para tu portfolio.</p>
         </div>
-        <div id="p1" class="section" style="display:none;">
+
+        <div id="p1" class="section" hidden>
           <p class="cmd">cat proyecto1.txt</p>
           <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
         </div>
-        <div id="p2" class="section" style="display:none;">
+
+        <div id="p2" class="section" hidden>
           <p class="cmd">open dashboard.md</p>
           <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
         </div>
-        <div id="p3" class="section" style="display:none;">
+
+        <div id="p3" class="section" hidden>
           <p class="cmd">run app_summary</p>
           <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
         </div>
-        <div id="curriculum" class="section" style="display:none;">
+
+        <div id="curriculum" class="section" hidden>
           <p class="cmd">cat curriculum.txt</p>
           <p class="output"><strong>Dante Martinez</strong></p>
           <p class="output">
             maxmarher@gmail.com |
-            <a href="https://linkedin.com/in/dantemh/" target="_blank">linkedin.com/in/dantemh/</a> |
+            <a href="https://linkedin.com/in/dantemh/" target="_blank" rel="noopener">linkedin.com/in/dantemh/</a> |
             +52 812-427-6331 | Monterrey, MX
           </p>
           <p class="output"><strong>Professional Summary</strong><br>
@@ -408,67 +274,85 @@
       </div>
     </div>
   </div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    (() => {
       const root = document.documentElement;
       const toggle = document.getElementById('toggleTheme');
-      const sunIcon = document.querySelector('.sun-icon');
-      const moonIcon = document.querySelector('.moon-icon');
       const nav = document.querySelector('.nav-header');
-      const pages = ['main', 'p1', 'p2', 'p3', 'curriculum'];
 
-      const saved = localStorage.getItem('darkMode');
-      const isDark = saved !== 'false';
+      // Páginas y etiquetas
+      const pages = [
+        { id: 'main', label: 'About Me' },
+        { id: 'p1', label: 'Proyecto 1' },
+        { id: 'p2', label: 'Proyecto 2' },
+        { id: 'p3', label: 'Proyecto 3' },
+        { id: 'curriculum', label: 'Curriculum' },
+      ];
 
-      toggle.checked = !isDark;
-      updateTheme();
+      // ===== Tema: usa preferencia guardada o del sistema =====
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+      applyTheme(initialTheme);
 
-      toggle.addEventListener('change', updateTheme);
+      // sincroniza switch
+      toggle.checked = (root.getAttribute('data-theme') === 'light');
+      toggle.addEventListener('change', () => applyTheme(toggle.checked ? 'light' : 'dark'));
 
-      pages.forEach((id) => {
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        // Accesibilidad
+        const label = document.querySelector('label[for="toggleTheme"]');
+        if (label) label.setAttribute('aria-label', theme === 'light' ? 'Activar modo oscuro' : 'Activar modo claro');
+      }
+
+      // ===== Nav dinámico con delegación =====
+      const frag = document.createDocumentFragment();
+      pages.forEach(({ id, label }) => {
         const a = document.createElement('a');
-        a.href = '#';
+        a.href = '#'+id;
         a.id = 'link-' + id;
-        if (id === 'main') a.textContent = 'About Me';
-        else if (id === 'curriculum') a.textContent = 'Curriculum';
-        else a.textContent = 'Proyecto ' + id.slice(1);
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          showSection(id);
-        });
-        nav.appendChild(a);
+        a.textContent = label;
+        frag.appendChild(a);
+      });
+      nav.appendChild(frag);
+
+      nav.addEventListener('click', (e) => {
+        const a = e.target.closest('a');
+        if (!a) return;
+        e.preventDefault();
+        const id = a.id.replace('link-', '');
+        showSection(id);
+        history.replaceState(null, '', '#'+id); // no recarga, mantiene hash
       });
 
-      function updateTheme() {
-        if (toggle.checked) {
-          root.setAttribute('data-theme', 'light');
-          localStorage.setItem('darkMode', 'false');
-          sunIcon.style.display = 'inline';
-          moonIcon.style.display = 'none';
-        } else {
-          root.setAttribute('data-theme', 'dark');
-          localStorage.setItem('darkMode', 'true');
-          sunIcon.style.display = 'none';
-          moonIcon.style.display = 'inline';
-        }
-      }
-
+      // ===== Mostrar sección =====
       function showSection(id) {
-        pages.forEach((pageId) => {
-          const section = document.getElementById(pageId);
-          const link = document.getElementById('link-' + pageId);
-          if (pageId === id) {
-            section.style.display = 'block';
-            link.classList.add('active');
-          } else {
-            section.style.display = 'none';
-            link.classList.remove('active');
-          }
+        pages.forEach(({ id: pid }) => {
+          const section = document.getElementById(pid);
+          const link = document.getElementById('link-' + pid);
+          const isActive = pid === id;
+          if (section) section.toggleAttribute('hidden', !isActive);
+          if (link) link.classList.toggle('active', isActive);
         });
       }
 
-      showSection('main');
-    });
+      // Cargar sección desde hash o default
+      const targetId = location.hash?.slice(1) || 'main';
+      showSection(pages.some(p => p.id === targetId) ? targetId : 'main');
+
+      // Escucha cambios del sistema solo si el usuario no ha guardado preferencia manual
+      if (!savedTheme && window.matchMedia) {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        mq.addEventListener?.('change', (e) => {
+          const next = e.matches ? 'dark' : 'light';
+          applyTheme(next);
+          toggle.checked = (next === 'light');
+        });
+      }
+    })();
   </script>
 </body>
 </html>
