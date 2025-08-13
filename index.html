@@ -70,7 +70,13 @@
       border: 1px solid var(--border);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
       display: flex;
-      flex-direction: column;
+      flex-direction: column;      // Detecta si el usuario prefiere modo oscuro
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
       overflow: hidden;
       animation: flicker 4s infinite;
       transition: background 0.3s, border 0.3s;
