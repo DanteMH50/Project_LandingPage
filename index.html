@@ -5,6 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dante Martinez | Porfolio</title>
   <style>
+    /* Unificación de títulos, subtítulos y texto */
+    .title, h1, .section h1 {
+      font-size: 2.2em;
+      font-family: var(--font-family);
+      font-weight: bold;
+      margin-bottom: 0.7em;
+      color: var(--fg);
+      letter-spacing: 1px;
+      text-align: left;
+    }
+    .cmd, h2, .section h2 {
+  font-size: 1.18em;
+      font-family: var(--font-family);
+      font-weight: bold;
+      margin-bottom: 0.6em;
+      color: var(--fg);
+      letter-spacing: 0.5px;
+      text-align: left;
+    }
+    h3, .section h3 {
+      font-size: 1.15em;
+      font-family: var(--font-family);
+      font-weight: 600;
+      margin-bottom: 0.4em;
+      color: var(--fg);
+      letter-spacing: 0.2px;
+      text-align: left;
+    }
+    p, ul, ol, li, .output {
+      font-size: 1em;
+      font-family: var(--font-family);
+      color: var(--fg);
+      line-height: 1.7;
+      text-align: left;
+    }
+    /* Espaciado y tipografía uniforme para todas las secciones */
+    .section {
+      padding-left: 2.5em;
+      padding-right: 2.5em;
+      padding-top: 2em;
+      padding-bottom: 2em;
+      margin: 0 auto 2.5em auto;
+      max-width: 950px;
+      font-family: var(--font-family);
+    }
+    h1, .section h1 {
+      font-size: 2.2em;
+      font-family: var(--font-family);
+      font-weight: bold;
+      margin-bottom: 0.7em;
+      color: var(--fg);
+      letter-spacing: 1px;
+    }
+    h2, .section h2 {
+      font-size: 1.5em;
+      font-family: var(--font-family);
+      font-weight: bold;
+      margin-bottom: 0.6em;
+      color: var(--fg);
+      letter-spacing: 0.5px;
+    }
+    h3, .section h3 {
+      font-size: 1.15em;
+      font-family: var(--font-family);
+      font-weight: 600;
+      margin-bottom: 0.4em;
+      color: var(--fg);
+      letter-spacing: 0.2px;
+    }
+    p, ul, ol, li, .output {
+      font-size: 1em;
+      font-family: var(--font-family);
+      color: var(--fg);
+      line-height: 1.7;
+    }
+    .nav-header {
+      display: flex;
+      gap: 1.2rem;
+      margin-left: auto;
+      align-items: center;
+      font-size: 0.95rem;
+      padding: 6px 16px;
+      background: rgba(255,255,255,0.13);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    .nav-header a {
+      color: #222;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+      font-family: var(--font-family);
+      font-size: 1em;
+      font-weight: 500;
+      background: rgba(240,240,240,0.45);
+      border: 1px solid rgba(120,120,120,0.18);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+      letter-spacing: 0.5px;
+      margin-right: 0;
+    }
+    .nav-header a:not(:last-child) {
+      margin-right: 0.5em;
+    }
+    .nav-header a:hover, .nav-header a.active {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+  border-color: #bbb;
+    }
     :root {
       --bg: #000;
       --fg: #e0e0e0;
@@ -69,18 +179,12 @@
       background: var(--panel);
       border: 1px solid var(--border);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
-      display: flex;
-      flex-direction: column;      // Detecta si el usuario prefiere modo oscuro
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
-      overflow: hidden;
-      animation: flicker 4s infinite;
-      transition: background 0.3s, border 0.3s;
-      position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: flicker 4s infinite;
+  transition: background 0.3s, border 0.3s;
+  position: relative;
     }
     .window-header {
       display: flex;
@@ -102,12 +206,14 @@
       gap: 0.5rem;
     }
     .title {
-      flex: 1 1 auto;
-      text-align: center;
-      color: var(--fg);
-      opacity: 0.8;
-      font-size: var(--font-size-title);
-      font-family: var(--font-family);
+  font-size: 1.5em;
+  font-family: var(--font-family);
+  font-weight: bold;
+  margin-bottom: 0.7em;
+  color: var(--fg);
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 1%;
     }
     .nav-header {
       display: flex;
@@ -293,7 +399,7 @@
           <label for="toggleTheme" tabindex="0"></label>
         </div>
       </div>
-      <div class="title"><strong>ROOT/Solutions</strong></div>
+  <div class="title">ROOT/Solutions</div>
       <nav class="nav-header" role="navigation" aria-label="Navegación principal"></nav>
     </div>
     <div class="content">
@@ -317,7 +423,7 @@
             <p class="output" style="text-align: left; margin-top: 1.5em;">
               Business Analyst with experience delivering solutions for banking, telecommunications, and food manufacturing industries. Focused on human efficiency: improving KPIs while maintaining sustainable workloads. I design and implement automations, dashboards, and predictive models that reduce manual work, standardize processes, and enhance both internal and external customer experience. Act as a bridge between business and technology to prioritize and execute initiatives with clear metrics.
             </p>
-            <p class="output" style="margin-top:2em;"><strong>Habilidades Clave</strong></p>
+            <p class="output" style="margin-top:2em;"><strong>Key Skills</strong></p>
             <ul class="output">
               <li><strong>Automation & Workflow Tools:</strong> Python (scripting, data pipelines, predictive modeling), VBA (process automation in SAP & Excel), Power Automate (task automation, notifications, reporting workflows), API integration (data extraction, system connectivity)</li>
               <li><strong>Data & Analytics:</strong> Power BI (interactive dashboards, KPI monitoring), SQL (data querying & transformation), Power Query (ETL workflows), Forecasting & Predictive Modeling (Python-based NPS and demand models)</li>
@@ -325,7 +431,7 @@
               <li><strong>Collaboration & Enablement:</strong> Cross-functional alignment (Ops, Finance, CX, HR), Data storytelling & visualization for non-technical users, Training & documentation for automation adoption</li>
             </ul>
             <div class="output contacto-block">
-              <strong>Contacto</strong>
+              <strong>Contact</strong>
               <div class="contacto-flex">
                 <span>maxmarher@gmail.com</span>
                 <a href="https://linkedin.com/in/dantemh/" target="_blank">linkedin.com/in/dantemh/</a>
@@ -339,141 +445,156 @@
             <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
           </div>
           <div id="p2" class="section" style="display:none;">
-            <p class="cmd">Estudio de Caso.pdf</p>
+            <p class="cmd">Case Study.pdf</p>
             <div class="output">
-              <strong>Resumen</strong><br>
-              Market Terminal es un terminal financiero full-stack diseñado para monitorear acciones en tiempo real con un enfoque en eficiencia de datos, resiliencia frente a fallos de red y experiencia multiplataforma. El sistema utiliza un backend en FastAPI para manejo de datos, un frontend en React con empaquetado mediante Tauri para distribución nativa, y un conjunto de herramientas de observabilidad que garantizan un ciclo de vida confiable desde la ingesta hasta la visualización.<br><br>
-              <strong>Objetivo</strong><br>
-              Desarrollar una plataforma que:<br>
+              <h2>Summary</h2>
+              Market Terminal is a full-stack financial terminal designed to monitor stocks in real time, focusing on data efficiency, resilience to network failures, and cross-platform experience. The system uses a FastAPI backend for data management, a React frontend packaged with Tauri for native distribution, and a set of observability tools that ensure a reliable lifecycle from ingestion to visualization.<br><br>
+              <strong>Objective</strong><br>
+              <div style="margin-top:1em;"></div>
+              Develop a platform that:<br>
               <ul>
-                <li>Permita explorar y analizar datos bursátiles en tiempo real sin saturar la cuota de la API.</li>
-                <li>Mantenga usabilidad incluso en escenarios adversos (latencia, caídas parciales de red, limitaciones de consumo).</li>
-                <li>Brinde una experiencia tipo terminal retro empaquetada para escritorio, destacándose de dashboards tradicionales.</li>
+                <li>Allows exploration and analysis of stock data in real time without exceeding API quotas.</li>
+                <li>Maintains usability even in adverse scenarios (latency, partial network outages, consumption limits).</li>
+                <li>Provides a retro terminal-style desktop experience, standing out from traditional dashboards.</li>
               </ul>
-              <strong>Retos y Soluciones</strong>
+              <div style="margin-top:2em;"></div>
+              <strong>Challenges & Solutions</strong>
               <ol>
-                <li><strong>Eficiencia en llamadas a la API</strong><br>
-                  <em>Reto:</em> la ingesta directa de datos podía provocar consumo excesivo de cuota.<br>
-                  <em>Solución:</em>
+                <li><strong>API Call Efficiency</strong><br>
+                  <em>Challenge:</em> Direct data ingestion could cause excessive quota consumption.<br>
+                  <em>Solution:</em>
                   <ul>
-                    <li>Implementación de cache por tipo de dato con time-to-live (TTL).</li>
-                    <li>Priorización de actualizaciones críticas frente a secundarias.</li>
+                    <li>Implementation of data-type-based cache with time-to-live (TTL).</li>
+                    <li>Prioritization of critical updates over secondary ones.</li>
                   </ul>
                 </li>
-                <li><strong>Exportación avanzada de datos</strong><br>
-                  <em>Reto:</em> los usuarios necesitaban informes procesables más allá de la UI.<br>
-                  <em>Solución:</em>
+                <li><strong>Advanced Data Export</strong><br>
+                  <em>Challenge:</em> Users needed actionable reports beyond the UI.<br>
+                  <em>Solution:</em>
                   <ul>
-                    <li>Endpoint dedicado en FastAPI que genera un libro Excel con tres hojas: Basic, Financials, Technical.</li>
-                    <li>Uso de openpyxl con ajuste automático de ancho de columnas.</li>
+                    <li>Dedicated FastAPI endpoint generates an Excel workbook with three sheets: Basic, Financials, Technical.</li>
+                    <li>Uses openpyxl with automatic column width adjustment.</li>
                   </ul>
                 </li>
-                <li><strong>Resiliencia del cliente</strong><br>
-                  <em>Reto:</em> caídas de red intermitentes reducían la confiabilidad de la app.<br>
-                  <em>Solución:</em>
+                <li><strong>Client Resilience</strong><br>
+                  <em>Challenge:</em> Intermittent network outages reduced app reliability.<br>
+                  <em>Solution:</em>
                   <ul>
-                    <li>Envoltorios genéricos de reintento + timeout para cada petición.</li>
-                    <li>Auto-refresh de datos cada 30 s en la capa React.</li>
+                    <li>Generic retry + timeout wrappers for each request.</li>
+                    <li>Auto-refresh data every 30s in the React layer.</li>
                   </ul>
                 </li>
-                <li><strong>Observabilidad</strong><br>
-                  <em>Reto:</em> difícil diagnosticar problemas de rendimiento en producción.<br>
-                  <em>Solución:</em>
+                <li><strong>Observability</strong><br>
+                  <em>Challenge:</em> Diagnosing performance issues in production was difficult.<br>
+                  <em>Solution:</em>
                   <ul>
-                    <li>High-Order Component (HOC) para inyectar métricas en cada llamada a la API.</li>
-                    <li>Script de diagnóstico que valida puertos, procesos activos y tamaño de archivos de cache.</li>
+                    <li>High-Order Component (HOC) to inject metrics into every API call.</li>
+                    <li>Diagnostic script validates ports, active processes, and cache file sizes.</li>
                   </ul>
                 </li>
-                <li><strong>Validación de datos</strong><br>
-                  <em>Reto:</em> estructuras JSON inconsistentes podían romper la UI.<br>
-                  <em>Solución:</em>
+                <li><strong>Data Validation</strong><br>
+                  <em>Challenge:</em> Inconsistent JSON structures could break the UI.<br>
+                  <em>Solution:</em>
                   <ul>
-                    <li>Conjunto de validadores centralizados para limpiar y estandarizar datos antes de renderizar.</li>
+                    <li>Centralized validators to clean and standardize data before rendering.</li>
                   </ul>
                 </li>
-                <li><strong>Distribución multiplataforma</strong><br>
-                  <em>Reto:</em> se necesitaba un portafolio usable tanto en navegador como en escritorio.<br>
-                  <em>Solución:</em>
+                <li><strong>Cross-Platform Distribution</strong><br>
+                  <em>Challenge:</em> Needed a portfolio usable in both browser and desktop.<br>
+                  <em>Solution:</em>
                   <ul>
-                    <li>Configuración de Tauri que empaqueta React + Vite como ejecutable ligero multiplataforma.</li>
+                    <li>Tauri configuration packages React + Vite as a lightweight cross-platform executable.</li>
                   </ul>
                 </li>
               </ol>
-              <strong>Arquitectura y Stack</strong><br>
+              <div style="margin-top:2em;"></div>
+              <strong>Architecture & Stack</strong><br>
               <ul>
-                <li><strong>Backend:</strong> FastAPI, openpyxl, sistema de cache JSON con metadata.</li>
+                <li><strong>Backend:</strong> FastAPI, openpyxl, JSON cache system with metadata.</li>
                 <li><strong>Frontend:</strong> React + Vite, Tailwind, Recharts.</li>
-                <li><strong>Distribución:</strong> Tauri para empaquetado nativo.</li>
-                <li><strong>Observabilidad:</strong> HOC de métricas + validadores.</li>
-                <li><strong>Testing:</strong> pruebas unitarias con Vitest para validar manejo de errores y rendimiento.</li>
+                <li><strong>Distribution:</strong> Tauri for native packaging.</li>
+                <li><strong>Observability:</strong> Metrics HOC + validators.</li>
+                <li><strong>Testing:</strong> Unit tests with Vitest to validate error handling and performance.</li>
               </ul>
-              <strong>Resultados y Aprendizajes</strong><br>
+              <div style="margin-top:2em;"></div>
+              <strong>Results & Insights</strong><br>
               <ul>
-                <li>Reducción significativa de llamadas redundantes gracias al cache con TTL.</li>
-                <li>Alta resiliencia frente a fallos de red mediante reintentos y timeouts.</li>
-                <li>Distribución multiplataforma lista para producción mediante Tauri.</li>
-                <li>Validaciones proactivas que previenen errores en la UI.</li>
-                <li>Fortalecimiento del perfil full-stack con foco en rendimiento, observabilidad y UX integral.</li>
+                <li>Significant reduction in redundant calls thanks to TTL cache.</li>
+                <li>High resilience to network failures via retries and timeouts.</li>
+                <li>Production-ready cross-platform distribution with Tauri.</li>
+                <li>Proactive validations prevent UI errors.</li>
+                <li>Strengthened full-stack profile with focus on performance, observability, and holistic UX.</li>
               </ul>
-              <strong>Lecciones Aprendidas</strong><br>
+              <div style="margin-top:2em;"></div>
+              <strong>Lessons Learned</strong><br>
               <ul>
-                <li>El diseño de cache inteligente es clave para evitar sobrecargar servicios externos.</li>
-                <li>Empaquetar con Tauri ofrece gran versatilidad, pero exige ajustes de seguridad y permisos.</li>
-                <li>La instrumentación proactiva (observabilidad) permite identificar problemas antes de que afecten al usuario.</li>
-                <li>Los validadores de datos son tan importantes como el renderizado visual para garantizar confiabilidad.</li>
+                <li>Smart cache design is key to avoiding overload of external services.</li>
+                <li>Packaging with Tauri offers great versatility but requires security and permission adjustments.</li>
+                <li>Proactive instrumentation (observability) helps identify issues before they impact users.</li>
+                <li>Data validators are as important as visual rendering for reliability.</li>
               </ul>
             </div>
           </div>
           <div id="curriculum" class="section" style="display:none;">
-            <p class="cmd">Experiencia Laboral y Formación Académica.txt</p>
+            <p class="cmd">Work Experience & Academic Background.txt</p>
             <div class="output cv-header">
             </div>
            <div class="output" style="margin-top:2em;">
-  <h2 style="margin-bottom:0.7em;">Experiencia Laboral</h2>
-  <strong>Analista de Mejora Continua y Capacitación | Barry Callebaut</strong><br>
-  <em>Junio 2024 - July 2025</em>
-  <ul>
-  <li></li>Led the ETL process for commercial dashboards: extracted data from SAP, transformed datasets using Power Query and VBA, and visualized insights in Power BI, cutting report time by 90%.</li>
-  <li>Collaborated with the Finance team to develop an automation that reduced the time spent downloading and distributing customer invoices by 60%.</li>
-  <li>Defined and implemented KPIs aligned with commercial and supply chain operations to inform strategic planning and continuous improvement initiatives.</li>
-  <li>Facilitated cross-functional workshops to identify operational bottlenecks and co-create strategic action plans using Lean methodology.</li>
-  </ul><br>
-  <strong>Analista de Negocios - Inteligencia de Negocios | Banregio</strong><br>
-  <em>Marzo 2023 - Junio 2024</em>
-  <ul>
-    <li>Optimized data structures and reporting workflows, reducing operational costs by 43% while preserving data accuracy.</li>
-    <li>Built and deployed real-time dashboards consolidating KPIs across departments, enabling proactive, strategic decision-making.</li>
-    <li>Designed and implemented a predictive NPS model in Python, replacing third-party analytics, increasing forecast accuracy, and saving 80% in annual costs.</li>
-    <li>Partnered with business leaders to translate data insights into strategic initiatives enhancing customer engagement and operational efficiency.</li>
-  </ul><br>
-  <strong>Analista de Negocios, Experto en la Materia - Comcast | Teleperformance</strong><br>
-  <em>Enero 2019 - Enero 2023</em>
-  <ul>
-    <li>Spearheaded a global CX improvement program using Lean Six Sigma, improving NPS by 20% across regions through strategic process standardization.</li>
-    <li>Developed a comprehensive performance metrics system integrating multiple channels and KPIs, enabling continuous measurement and strategic improvement.</li>
-    <li>Facilitated workshops with global stakeholders to translate analytics into actionable strategic plans.</li>
-    <li>Served as a liaison between technical teams and business units to drive scalable implementations aligned with strategy.</li>
-  </ul>
-  <h2 style="margin:1.5em 0 0.7em 0;">Personal Projects</h2>
-  <br>
-  <ul>
-    <li>🚀 <strong><a href="https://dantemh50.github.io/Project_LandingPage/" target="_blank">Market Terminal (In Progress)</a>:</strong> Aplicación estilo terminal retro para visualizar precios de acciones y criptomonedas en tiempo real, con integración a APIs públicas, actualización en vivo vía WebSockets y exportación de datos a CSV.</li>
-    <li>🧠 <strong>MiniAura (Conceptual):</strong> Sistema ligero que combina memoria vectorial y un motor reflexivo para detectar contradicciones y mantener coherencia conversacional.</li>
-  </ul>
-  <h2 style="margin:1.5em 0 0.7em 0;">Educación</h2>
-  <ul>
-    <li><strong>Licenciatura en Negocios Internacionales y Comercio</strong> - Universidad TecMilenio | 2022</li>
-    <li><strong>Ingeniería en Desarrollo de Software</strong> - UANL | 2017 (Incompleta)</li>
-  </ul>
-  <h2 style="margin:1.5em 0 0.7em 0;">Certificaciones</h2>
-  <ul>
-    <li>Profesional en Gestión de Proyectos | Google (En Progreso)</li>
-    <li>Profesional en Experiencia del Cliente | Medallia (2024)</li>
-    <li>Análisis de Negocios | Microsoft & LinkedIn (2024)</li>
-    <li>Inteligencia de Mercados | TecMilenio (2022)</li>
-    <li>Gestión de Negocios Internacionales | TecMilenio (2020)</li>
-    <li>Curso Lean Six Sigma | Teleperformance (2018)</li>
-  </ul>
+  <h2>Work Experience</h2>
+  <div class="job-block" style="margin-bottom:2em;">
+    <strong>Continuous Improvement & Training Analyst | Barry Callebaut</strong><br>
+    <em>June 2024 - July 2025</em>
+      <li>Led the ETL process for commercial dashboards: extracted data from SAP, transformed datasets using Power Query and VBA, and visualized insights in Power BI, reducing report time by 90%.</li>
+      <li>Collaborated with the Finance team to develop an automation that reduced the time spent downloading and distributing customer invoices by 60%.</li>
+      <li>Defined and implemented KPIs aligned with commercial and supply chain operations to inform strategic planning and continuous improvement initiatives.</li>
+      <li>Facilitated cross-functional workshops to identify operational bottlenecks and co-create strategic action plans using Lean methodology.</li>
+    </ul>
+  </div>
+  <div class="job-block" style="margin-bottom:2em;">
+    <strong>Business Analyst - Business Intelligence | Banregio</strong><br>
+    <em>March 2023 - June 2024</em>
+    <ul>
+      <li>Optimized data structures and reporting workflows, reducing operational costs by 43% while preserving data accuracy.</li>
+      <li>Built and deployed real-time dashboards consolidating KPIs across departments, enabling proactive, strategic decision-making.</li>
+      <li>Designed and implemented a predictive NPS model in Python, replacing third-party analytics, increasing forecast accuracy, and saving 80% in annual costs.</li>
+      <li>Partnered with business leaders to translate data insights into strategic initiatives enhancing customer engagement and operational efficiency.</li>
+    </ul>
+  </div>
+  <div class="job-block" style="margin-bottom:2em;">
+    <strong>Business Analyst, Subject Matter Expert - Comcast | Teleperformance</strong><br>
+    <em>January 2019 - January 2023</em>
+    <ul>
+      <li>Spearheaded a global CX improvement program using Lean Six Sigma, improving NPS by 20% across regions through strategic process standardization.</li>
+      <li>Developed a comprehensive performance metrics system integrating multiple channels and KPIs, enabling continuous measurement and strategic improvement.</li>
+      <li>Facilitated workshops with global stakeholders to translate analytics into actionable strategic plans.</li>
+      <li>Served as a liaison between technical teams and business units to drive scalable implementations aligned with strategy.</li>
+    </ul>
+  </div>
+  <h2>Personal Projects</h2>
+  <div class="job-block" style="margin-bottom:2em;">
+    <ul>
+  <li><strong><a href="https://dantemh50.github.io/Project_LandingPage/" target="_blank">Market Terminal (In Progress)</a>:</strong> Retro terminal-style app to visualize stock and crypto prices in real time, integrating public APIs, live updates via WebSockets, and CSV data export.</li>
+  <li><strong>MiniAura (Conceptual):</strong> Lightweight system combining vector memory and a reflexive engine to detect contradictions and maintain conversational coherence.</li>
+    </ul>
+  </div>
+  <h2>Education</h2>
+  <div class="job-block" style="margin-bottom:2em;">
+    <ul>
+      <li><strong>Bachelor's in International Business and Trade</strong> - TecMilenio University | 2022</li>
+      <li><strong>Software Engineering</strong> - UANL | 2017 (Incomplete)</li>
+    </ul>
+  </div>
+  <h2>Certifications</h2>
+  <div class="job-block" style="margin-bottom:2em;">
+    <ul>
+      <li>Project Management Professional | Google (In Progress)</li>
+      <li>Customer Experience Professional | Medallia (2024)</li>
+      <li>Business Analysis | Microsoft & LinkedIn (2024)</li>
+      <li>Market Intelligence | TecMilenio (2022)</li>
+      <li>International Business Management | TecMilenio (2020)</li>
+      <li>Lean Six Sigma Course | Teleperformance (2018)</li>
+    </ul>
+  </div>
 </div>
             </div>
           </div>
@@ -495,10 +616,10 @@
       updateTheme();
       toggle.addEventListener('change', updateTheme);
       const orderedPages = [
-        { id: 'main', label: 'Sobre mí' },
-        { id: 'curriculum', label: 'Antecedentes' },
+  { id: 'main', label: 'About Me' },
+  { id: 'curriculum', label: 'Background' },
         { id: 'p2', label: 'Market Terminal' },
-        { id: 'p1', label: 'Predicción de la Calidad del Aire' }
+  { id: 'p1', label: 'Air Quality Prediction' }
       ];
       orderedPages.forEach(({ id, label }) => {
         const a = document.createElement('a');
