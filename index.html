@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -618,9 +618,9 @@
       const nav = document.querySelector('.nav-header');
       const pages = ['main', 'p1', 'p2', 'curriculum'];
       const saved = localStorage.getItem('darkMode');
-      const isDark = saved !== 'false';
-      toggle.checked = !isDark;
-      updateTheme();
+    const isDark = saved === 'true';
+    toggle.checked = isDark;
+    updateTheme();
       toggle.addEventListener('change', updateTheme);
       const orderedPages = [
   { id: 'main', label: 'About Me' },
