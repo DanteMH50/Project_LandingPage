@@ -305,7 +305,7 @@
               <div class="about-photo" style="margin-top: 0;">
                 <img src="https://raw.githubusercontent.com/DanteMH50/Project_LandingPage/e4ea510906c0b44c20e806125638fadde38a49f0/img5.jpg" alt="Foto de Dante Martinez">
               </div>
-              <div style="flex: 1;">
+              <div style="flex: 1; display: flex; align-items: flex-start;">
                 <p class="output" style="margin-bottom: 0; text-align: left;">
                   Continuous Improvement & Data Analytics Professional<br>
                   Business Automation<br>
@@ -494,14 +494,17 @@
       toggle.checked = !isDark;
       updateTheme();
       toggle.addEventListener('change', updateTheme);
-      pages.forEach((id) => {
+      const orderedPages = [
+        { id: 'main', label: 'Sobre mí' },
+        { id: 'curriculum', label: 'Antecedentes' },
+        { id: 'p2', label: 'Market Terminal' },
+        { id: 'p1', label: 'Predicción de la Calidad del Aire' }
+      ];
+      orderedPages.forEach(({ id, label }) => {
         const a = document.createElement('a');
         a.href = '#';
         a.id = 'link-' + id;
-        if (id === 'main') a.textContent = 'Sobre mí';
-        else if (id === 'p1') a.textContent = 'Prediccion de la Calidad del Aire';
-        else if (id === 'p2') a.textContent = 'Market Terminal';
-        else if (id === 'curriculum') a.textContent = 'Antecedentes';
+        a.textContent = label;
         a.addEventListener('click', (e) => {
           e.preventDefault();
           showSection(id);
