@@ -333,8 +333,91 @@
             <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
           </div>
           <div id="p2" class="section" style="display:none;">
-            <p class="cmd">AURA:Arquitectura Universal de Reflexión Autónoma.py</p>
-            <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p class="cmd">Market Terminal</p>
+            <div class="output">
+              <strong>Estudio de Caso: Market Terminal React</strong><br><br>
+              <strong>Resumen</strong><br>
+              Market Terminal es un terminal financiero full-stack diseñado para monitorear acciones en tiempo real con un enfoque en eficiencia de datos, resiliencia frente a fallos de red y experiencia multiplataforma. El sistema utiliza un backend en FastAPI para manejo de datos, un frontend en React con empaquetado mediante Tauri para distribución nativa, y un conjunto de herramientas de observabilidad que garantizan un ciclo de vida confiable desde la ingesta hasta la visualización.<br><br>
+              <strong>Objetivo</strong><br>
+              Desarrollar una plataforma que:<br>
+              <ul>
+                <li>Permita explorar y analizar datos bursátiles en tiempo real sin saturar la cuota de la API.</li>
+                <li>Mantenga usabilidad incluso en escenarios adversos (latencia, caídas parciales de red, limitaciones de consumo).</li>
+                <li>Brinde una experiencia tipo terminal retro empaquetada para escritorio, destacándose de dashboards tradicionales.</li>
+              </ul>
+              <strong>Retos y Soluciones</strong>
+              <ol>
+                <li><strong>Eficiencia en llamadas a la API</strong><br>
+                  <em>Reto:</em> la ingesta directa de datos podía provocar consumo excesivo de cuota.<br>
+                  <em>Solución:</em>
+                  <ul>
+                    <li>Implementación de cache por tipo de dato con time-to-live (TTL).</li>
+                    <li>Priorización de actualizaciones críticas frente a secundarias.</li>
+                  </ul>
+                </li>
+                <li><strong>Exportación avanzada de datos</strong><br>
+                  <em>Reto:</em> los usuarios necesitaban informes procesables más allá de la UI.<br>
+                  <em>Solución:</em>
+                  <ul>
+                    <li>Endpoint dedicado en FastAPI que genera un libro Excel con tres hojas: Basic, Financials, Technical.</li>
+                    <li>Uso de openpyxl con ajuste automático de ancho de columnas.</li>
+                  </ul>
+                </li>
+                <li><strong>Resiliencia del cliente</strong><br>
+                  <em>Reto:</em> caídas de red intermitentes reducían la confiabilidad de la app.<br>
+                  <em>Solución:</em>
+                  <ul>
+                    <li>Envoltorios genéricos de reintento + timeout para cada petición.</li>
+                    <li>Auto-refresh de datos cada 30 s en la capa React.</li>
+                  </ul>
+                </li>
+                <li><strong>Observabilidad</strong><br>
+                  <em>Reto:</em> difícil diagnosticar problemas de rendimiento en producción.<br>
+                  <em>Solución:</em>
+                  <ul>
+                    <li>High-Order Component (HOC) para inyectar métricas en cada llamada a la API.</li>
+                    <li>Script de diagnóstico que valida puertos, procesos activos y tamaño de archivos de cache.</li>
+                  </ul>
+                </li>
+                <li><strong>Validación de datos</strong><br>
+                  <em>Reto:</em> estructuras JSON inconsistentes podían romper la UI.<br>
+                  <em>Solución:</em>
+                  <ul>
+                    <li>Conjunto de validadores centralizados para limpiar y estandarizar datos antes de renderizar.</li>
+                  </ul>
+                </li>
+                <li><strong>Distribución multiplataforma</strong><br>
+                  <em>Reto:</em> se necesitaba un portafolio usable tanto en navegador como en escritorio.<br>
+                  <em>Solución:</em>
+                  <ul>
+                    <li>Configuración de Tauri que empaqueta React + Vite como ejecutable ligero multiplataforma.</li>
+                  </ul>
+                </li>
+              </ol>
+              <strong>Arquitectura y Stack</strong><br>
+              <ul>
+                <li><strong>Backend:</strong> FastAPI, openpyxl, sistema de cache JSON con metadata.</li>
+                <li><strong>Frontend:</strong> React + Vite, Tailwind, Recharts.</li>
+                <li><strong>Distribución:</strong> Tauri para empaquetado nativo.</li>
+                <li><strong>Observabilidad:</strong> HOC de métricas + validadores.</li>
+                <li><strong>Testing:</strong> pruebas unitarias con Vitest para validar manejo de errores y rendimiento.</li>
+              </ul>
+              <strong>Resultados y Aprendizajes</strong><br>
+              <ul>
+                <li>Reducción significativa de llamadas redundantes gracias al cache con TTL.</li>
+                <li>Alta resiliencia frente a fallos de red mediante reintentos y timeouts.</li>
+                <li>Distribución multiplataforma lista para producción mediante Tauri.</li>
+                <li>Validaciones proactivas que previenen errores en la UI.</li>
+                <li>Fortalecimiento del perfil full-stack con foco en rendimiento, observabilidad y UX integral.</li>
+              </ul>
+              <strong>Lecciones Aprendidas</strong><br>
+              <ul>
+                <li>El diseño de cache inteligente es clave para evitar sobrecargar servicios externos.</li>
+                <li>Empaquetar con Tauri ofrece gran versatilidad, pero exige ajustes de seguridad y permisos.</li>
+                <li>La instrumentación proactiva (observabilidad) permite identificar problemas antes de que afecten al usuario.</li>
+                <li>Los validadores de datos son tan importantes como el renderizado visual para garantizar confiabilidad.</li>
+              </ul>
+            </div>
           </div>
           <div id="curriculum" class="section" style="display:none;">
             <p class="cmd">Experiencia Laboral y Formación Académica.txt</p>
