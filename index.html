@@ -1,142 +1,73 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dante Martinez | Porfolio</title>
+  <title>Dante Martinez | AI Solutions Architect</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
+
   <style>
-    /* Unificación de títulos, subtítulos y texto */
-    .title, h1, .section h1 {
-      font-size: 2.2em;
-      font-family: var(--font-family);
-      font-weight: bold;
-      margin-bottom: 0.7em;
-      color: var(--fg);
-      letter-spacing: 1px;
-      text-align: left;
-    }
-    .cmd, h2, .section h2 {
-  font-size: 1.18em;
-      font-family: var(--font-family);
-      font-weight: bold;
-      margin-bottom: 0.6em;
-      color: var(--fg);
-      letter-spacing: 0.5px;
-      text-align: left;
-    }
-    h3, .section h3 {
-      font-size: 1.15em;
-      font-family: var(--font-family);
-      font-weight: 600;
-      margin-bottom: 0.4em;
-      color: var(--fg);
-      letter-spacing: 0.2px;
-      text-align: left;
-    }
-    p, ul, ol, li, .output {
-      font-size: 1em;
-      font-family: var(--font-family);
-      color: var(--fg);
-      line-height: 1.7;
-      text-align: left;
-    }
-    /* Espaciado y tipografía uniforme para todas las secciones */
-    .section {
-      padding-left: 2.5em;
-      padding-right: 2.5em;
-      padding-top: 2em;
-      padding-bottom: 2em;
-      margin: 0 auto 2.5em auto;
-      max-width: 950px;
-      font-family: var(--font-family);
-    }
-    h1, .section h1 {
-      font-size: 2.2em;
-      font-family: var(--font-family);
-      font-weight: bold;
-      margin-bottom: 0.7em;
-      color: var(--fg);
-      letter-spacing: 1px;
-    }
-    h2, .section h2 {
-      font-size: 1.5em;
-      font-family: var(--font-family);
-      font-weight: bold;
-      margin-bottom: 0.6em;
-      color: var(--fg);
-      letter-spacing: 0.5px;
-    }
-    h3, .section h3 {
-      font-size: 1.15em;
-      font-family: var(--font-family);
-      font-weight: 600;
-      margin-bottom: 0.4em;
-      color: var(--fg);
-      letter-spacing: 0.2px;
-    }
-    p, ul, ol, li, .output {
-      font-size: 1em;
-      font-family: var(--font-family);
-      color: var(--fg);
-      line-height: 1.7;
-    }
-    .nav-header {
-      display: flex;
-      gap: 1.2rem;
-      margin-left: auto;
-      align-items: center;
-      font-size: 0.95rem;
-      padding: 6px 16px;
-      background: rgba(255,255,255,0.13);
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-    }
-    .nav-header a {
-      color: #222;
-      text-decoration: none;
-      padding: 8px 18px;
-      border-radius: 8px;
-      transition: background 0.2s, box-shadow 0.2s, color 0.2s;
-      font-family: var(--font-family);
-      font-size: 1em;
-      font-weight: 500;
-      background: rgba(240,240,240,0.45);
-      border: 1px solid rgba(120,120,120,0.18);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.10);
-      letter-spacing: 0.5px;
-      margin-right: 0;
-    }
-    .nav-header a:not(:last-child) {
-      margin-right: 0.5em;
-    }
-    .nav-header a:hover, .nav-header a.active {
-  background: #fff;
-  color: #222;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.22);
-  border-color: #bbb;
-    }
+    /* ============ NOSTALGIA TOKENS ============ */
     :root {
-      --bg: #000;
-      --fg: #e0e0e0;
-      --panel: rgba(20,20,20,0.9);
-      --border: rgba(255,255,255,0.1);
-      --noise-opacity: 0.03;
-      --scanline-opacity: 0.06;
-      --cursor: '\2588';
-      --flicker-opacity: 0.04;
-      --font-family: 'Consolas', monospace;
-      --font-size-base: 0.9rem;
-      --font-size-title: calc(var(--font-size-base) * 1.3);
+      /* Palette */
+      --crema:      #FFF8E7;
+      --cremaDark:  #f0e6d0;
+      --cremaMid:   #e8d9c0;
+      --carbon:     #3a3a3a;
+      --mid:        #6b5c54;
+      --soft:       #d4c8be;
+      --ambar:      #E8A628;
+      --rosa:       #c45470;
+      --terra:      #d97757;
+      --green:      #25D366;
+
+      /* Type stacks (Nostalgia pairing + mono kept for terminal prompt only) */
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      --font-mono:  'Consolas', 'SF Mono', Menlo, monospace;
+      --font-family: var(--font-sans);
+
+      --font-size-base: 0.95rem;
+      --font-size-title: calc(var(--font-size-base) * 1.35);
       --font-size-cmd: calc(var(--font-size-base) * 1.1);
       --font-size-content: var(--font-size-base);
       --font-size-comment: calc(var(--font-size-base) * 0.9);
+
+      /* Effect knobs */
+      --noise-opacity: 0.03;
+      --scanline-opacity: 0.05;
+      --cursor: '\2588';
+      --flicker-opacity: 0.04;
+
+      /* Theme defaults (dark = carbon) */
+      --bg: var(--carbon);
+      --fg: var(--crema);
+      --fg-muted: var(--soft);
+      --accent: var(--ambar);
+      --accent-soft: var(--rosa);
+      --panel: rgba(48,48,48,0.92);
+      --panel-inner: rgba(58,58,58,0.85);
+      --border: rgba(255,248,231,0.12);
+      --link: var(--ambar);
+      --header-bg: rgba(30,30,30,0.85);
     }
+
     [data-theme='light'] {
-      --bg: #f5f5f5;
-      --fg: #111;
-      --panel: rgba(255,255,255,0.95);
-      --border: rgba(0,0,0,0.1);
+      --bg: var(--crema);
+      --fg: var(--carbon);
+      --fg-muted: var(--mid);
+      --panel: rgba(255,248,231,0.95);
+      --panel-inner: rgba(240,230,208,0.55);
+      --border: rgba(58,58,58,0.12);
+      --link: #b88715;
+      --header-bg: rgba(240,230,208,0.85);
     }
+
+    /* ============ RESET + BASE ============ */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
@@ -173,25 +104,28 @@
       0%, 100% { opacity: calc(1 - var(--flicker-opacity)); }
       50% { opacity: 1; }
     }
+
+    /* ============ TERMINAL FRAME ============ */
     .terminal {
       width: 97vw;
       height: 92vh;
       background: var(--panel);
       border: 1px solid var(--border);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  animation: flicker 4s infinite;
-  transition: background 0.3s, border 0.3s;
-  position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: flicker 4s infinite;
+      transition: background 0.3s, border 0.3s;
+      position: relative;
+      border-radius: 6px;
     }
     .window-header {
       display: flex;
       align-items: center;
       padding: 0 1rem;
       height: 2.5rem;
-      background: rgba(30, 30, 30, 0.8);
+      background: var(--header-bg);
       border-bottom: 1px solid var(--border);
       gap: 1rem;
       position: sticky;
@@ -199,58 +133,65 @@
       z-index: 2;
       transition: background 0.3s, border 0.3s;
     }
-    [data-theme='light'] .window-header { background: rgba(240, 240, 240, 0.8); }
-    .switch-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .switch-wrapper { display: flex; align-items: center; gap: 0.5rem; }
+
     .title {
-  font-size: 1.5em;
-  font-family: var(--font-family);
-  font-weight: bold;
-  margin-bottom: 0.7em;
-  color: var(--fg);
-  letter-spacing: 1px;
-  text-align: center;
-  margin-top: 1%;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: -0.2px;
+      text-align: center;
+      margin: 0;
     }
+    .title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ambar);
+    }
+
+    /* ============ NAV ============ */
     .nav-header {
       display: flex;
       gap: 0.25rem;
       margin-left: auto;
       align-items: center;
       font-size: 0.85rem;
-      padding: 2px 8px;
-      background: rgba(255,255,255,0.03);
+      padding: 2px 6px;
+      background: rgba(255,248,231,0.04);
       border-radius: 10px;
     }
     .nav-header a {
       color: var(--fg);
       text-decoration: none;
-      padding: 2px 8px;
-      border-radius: 5px;
-      transition: background 0.2s;
-      font-family: var(--font-family);
-      font-size: 0.85rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
       font-weight: 500;
-      background: none; border: none;
-      letter-spacing: 0.5px;
+      background: none;
+      border: none;
+      letter-spacing: 0.4px;
     }
-    .nav-header a:hover, .nav-header a.active {
-      background: rgba(0, 0, 0, 0.12);
-      color: var(--fg);
+    .nav-header a:hover {
+      background: rgba(232,166,40,0.12);
+      color: var(--ambar);
+    }
+    .nav-header a.active {
+      background: var(--ambar);
+      color: var(--crema);
     }
     [data-theme='light'] .nav-header a.active {
-      background: rgba(0,0,0,0.12);
-      color: #111;
-      font-weight: bold;
+      background: var(--ambar);
+      color: var(--crema);
     }
+
+    /* ============ CONTENT AREA ============ */
     .content {
       flex: 1;
       overflow-y: auto;
-      padding: 2.2rem 0 1rem 0;
-      margin-top: 2.5rem;
+      padding: 1.6rem 0 1rem 0;
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -260,15 +201,12 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 1rem;
-      background: rgba(30, 30, 30, 0.8);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
+      background: var(--panel-inner);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
       transition: background 0.3s;
-    }
-    [data-theme='light'] .content-wrapper {
-      background: rgba(255,255,255,0.85);
-      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      border-radius: 4px;
     }
     .inner-content {
       width: 100%;
@@ -276,45 +214,138 @@
       margin: 0 auto;
       padding: 1.5rem 2rem;
       background: transparent;
-      transition: background 0.3s;
     }
-    [data-theme='light'] .inner-content { background: transparent; }
+
+    /* ============ TERMINAL PROMPT (kept mono on purpose) ============ */
     .cmd {
-      font-family: var(--font-family);
+      font-family: var(--font-mono);
       font-size: var(--font-size-cmd);
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      color: var(--fg);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--ambar);
+      letter-spacing: 0.2px;
     }
-    .cmd::before { content: 'PS C:\\Portfolio> '; }
+    .cmd::before { content: 'PS C:\\Portfolio> '; color: var(--rosa); }
     .cmd::after {
       content: var(--cursor);
       margin-left: 2px;
+      color: var(--ambar);
       animation: blink 1s steps(2) infinite;
     }
     @keyframes blink {
       0%, 50% { opacity: 1; }
       51%, 100% { opacity: 0; }
     }
-    .output {
-      font-size: var(--font-size-content);
-      margin-bottom: 1rem;
-      line-height: 1.7;
-      color: var(--fg);
-      text-align: justify;
-    }
-    .output a { color: var(--fg); text-decoration: underline; }
-    .output li {
+
+    /* ============ TYPOGRAPHY (Nostalgia pairing) ============ */
+    .section { padding: 0 0 2em 0; margin: 0 auto; max-width: 950px; font-family: var(--font-family); }
+
+    h1, .section h1 {
+      font-family: var(--font-serif);
+      font-size: 2.2em;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.8px;
       margin-bottom: 0.7em;
-      text-align: justify;
+      color: var(--fg);
+      text-align: left;
+    }
+    h1 em { font-style: italic; font-weight: 400; color: var(--ambar); }
+
+    h2, .section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.55em;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.4px;
+      margin: 1.4em 0 0.6em 0;
+      color: var(--fg);
+      text-align: left;
+    }
+    h2 em { font-style: italic; font-weight: 400; color: var(--ambar); }
+
+    h3, .section h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15em;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 0.4em;
+      color: var(--fg);
+      text-align: left;
+    }
+
+    p, ul, ol, li, .output {
+      font-family: var(--font-sans);
+      font-size: 1em;
+      color: var(--fg);
+      line-height: 1.7;
+      text-align: left;
+    }
+    .output {
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+    .output a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+    .output a:hover { color: var(--ambar); }
+    .output li {
+      margin-bottom: 0.6em;
       line-height: 1.7;
     }
+    .output strong { color: var(--fg); font-weight: 600; }
+
+    /* Eyebrow tag pattern */
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rosa);
+      margin-bottom: 8px;
+    }
+    [data-theme='light'] .eyebrow { color: var(--rosa); }
+
     .comment {
+      font-family: var(--font-sans);
       font-size: var(--font-size-comment);
-      color: #aaa;
+      color: var(--fg-muted);
       font-style: italic;
       margin-bottom: 1rem;
     }
+
+    /* Highlight chip for tech stack */
+    .chip {
+      display: inline-block;
+      padding: 3px 10px;
+      margin: 2px 4px 2px 0;
+      border-radius: 999px;
+      background: rgba(232,166,40,0.14);
+      color: var(--ambar);
+      font-size: 0.78em;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    /* Job block divider */
+    .job-block {
+      padding: 0.4em 0 1.2em 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .job-block:last-child { border-bottom: none; }
+    .job-block strong { color: var(--ambar); }
+    .job-block em {
+      display: inline-block;
+      margin: 4px 0 10px;
+      font-family: var(--font-sans);
+      font-style: normal;
+      font-size: 0.82em;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    /* ============ ICONS / TOGGLE ============ */
     .icon {
       width: 18px; height: 18px;
       stroke-width: 2;
@@ -324,7 +355,8 @@
       stroke: currentColor; fill: none;
     }
     .moon-icon { color: var(--fg); }
-    [data-theme='light'] .moon-icon { color: #000; }
+    [data-theme='light'] .moon-icon { color: var(--carbon); }
+
     .toggle-switch {
       position: relative;
       display: inline-block;
@@ -334,42 +366,50 @@
     .toggle-switch label {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 248, 231, 0.12);
       border-radius: 34px;
       backdrop-filter: blur(4px);
-      box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2);
+      box-shadow: inset 0 0 2px rgba(255, 248, 231, 0.2);
       cursor: pointer; transition: background 0.3s;
     }
     .toggle-switch label::before {
       content: '';
       position: absolute; top: 2px; left: 2px;
       width: 20px; height: 20px;
-      background-color: var(--fg);
+      background-color: var(--ambar);
       border-radius: 50%;
       transition: transform 0.3s, background-color 0.3s;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
     }
-    .toggle-switch input:checked + label { background: rgba(255, 255, 255, 0.2); }
+    .toggle-switch input:checked + label { background: rgba(58, 58, 58, 0.18); }
     .toggle-switch input:checked + label::before { transform: translateX(18px); }
     [data-theme='light'] .toggle-switch label {
-      background: rgba(0, 0, 0, 0.1);
-      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+      background: rgba(58, 58, 58, 0.1);
+      box-shadow: inset 0 0 2px rgba(58, 58, 58, 0.2);
     }
-    [data-theme='light'] .toggle-switch label::before { background-color: var(--fg); }
+    [data-theme='light'] .toggle-switch label::before { background-color: var(--ambar); }
+
+    /* ============ MAIN / RESUMEN ============ */
     .cv-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 1rem; flex-wrap: wrap;
     }
-    .cv-contact { text-align: right; }
-    .contacto-block { text-align: right; margin-top: 0.5rem; }
+    .contacto-block {
+      text-align: right;
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed var(--border);
+    }
     .contacto-flex {
       display: flex; flex-direction: column;
-      align-items: flex-end; gap: 0.1em;
+      align-items: flex-end; gap: 0.15em;
+      font-family: var(--font-mono);
+      font-size: 0.88em;
     }
     .contacto-flex a {
-      color: var(--fg); text-decoration: underline;
+      color: var(--link); text-decoration: underline; text-underline-offset: 2px;
       word-break: break-all;
     }
     .about-photo {
@@ -378,8 +418,63 @@
       margin-top: 11px;
     }
     .about-photo img {
-      width: 350px;
-      height: auto;
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      object-position: center 30%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    /* Impact strip on main */
+    .impact-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 1.4em 0 0.5em;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(232,166,40,0.06);
+      border: 1px solid rgba(232,166,40,0.18);
+    }
+    .impact-strip .cell { text-align: center; }
+    .impact-strip .num {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.6em;
+      color: var(--ambar);
+      line-height: 1;
+    }
+    .impact-strip .lbl {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-top: 6px;
+    }
+
+    /* Scrollbar polish */
+    .content::-webkit-scrollbar { width: 8px; }
+    .content::-webkit-scrollbar-track { background: transparent; }
+    .content::-webkit-scrollbar-thumb {
+      background: rgba(232,166,40,0.25);
+      border-radius: 999px;
+    }
+    .content::-webkit-scrollbar-thumb:hover { background: rgba(232,166,40,0.5); }
+
+    /* ============ Responsive ============ */
+    @media (max-width: 768px) {
+      .inner-content { padding: 1rem 1.1rem; }
+      .about-photo img { width: 180px; }
+      h1, .section h1 { font-size: 1.7em; }
+      h2, .section h2 { font-size: 1.25em; }
+      .impact-strip { grid-template-columns: 1fr 1fr; }
+      .nav-header { gap: 2px; padding: 2px 4px; }
+      .nav-header a { padding: 4px 8px; font-size: 0.75rem; }
+      .title { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -399,220 +494,257 @@
           <label for="toggleTheme" tabindex="0"></label>
         </div>
       </div>
-  <div class="title">ROOT/Solutions</div>
+      <div class="title">ROOT/<em>Solutions</em></div>
       <nav class="nav-header" role="navigation" aria-label="Navegación principal"></nav>
     </div>
+
     <div class="content">
       <div class="content-wrapper">
         <div class="inner-content">
-          <div id="main" class="section" style="display: flex; align-items: flex-start; gap: 2rem;">
+
+          <!-- ============ MAIN / RESUMEN ============ -->
+          <div id="main" class="section">
             <p class="cmd">Resumen.txt</p>
-            <div style="display: flex; align-items: center; gap: 2rem; width: 100%; margin-top: 1.5em;">
+
+            <div style="display: flex; align-items: flex-start; gap: 2rem; width: 100%; margin-top: 1.5em; flex-wrap: wrap;">
               <div class="about-photo" style="margin-top: 0;">
-                <img src="https://raw.githubusercontent.com/DanteMH50/Project_LandingPage/e4ea510906c0b44c20e806125638fadde38a49f0/img5.jpg" alt="Foto de Dante Martinez">
+                <img src="dante.png" alt="Foto de Dante Martinez" loading="lazy">
               </div>
-              <div style="flex: 1; display: flex; align-items: flex-start;">
-                <p class="output" style="margin-bottom: 0; text-align: left;">
-                  Continuous Improvement & Data Analytics Professional<br>
-                  Business Automation<br>
-                  Exploring Cognitive & Behavioral Systems
+              <div style="flex: 1; min-width: 240px;">
+                <span class="eyebrow">AI Solutions Architect · Monterrey, MX</span>
+                <h1>Dante Martinez<br><em>AI Solutions Architect</em></h1>
+                <p class="output" style="margin: 0;">
+                  Automation Engineer · Ex-Business Analyst<br>
+                  Sistemas multi-agente · Inferencia on-premise · Automatización de proceso
                 </p>
               </div>
             </div>
-            <br>
-            <p class="output" style="text-align: left; margin-top: 1.5em;">
-              Business Analyst with experience delivering solutions for banking, telecommunications, and food manufacturing industries. Focused on human efficiency: improving KPIs while maintaining sustainable workloads. I design and implement automations, dashboards, and predictive models that reduce manual work, standardize processes, and enhance both internal and external customer experience. Act as a bridge between business and technology to prioritize and execute initiatives with clear metrics.
+
+            <p class="output" style="margin-top: 1.8em;">
+              Business Analyst convertido en AI Architect. Diseño y despliego sistemas de automatización inteligente que viven en el cruce entre operación de negocio e infraestructura de IA — desde mapear workflows rotos hasta llevar sistemas multi-agente a producción. Después de cinco años diagnosticando ineficiencias en banca, telecom y manufactura de alimentos, ahora construyo las soluciones que antes especificaba. Sin capa de traducción entre el problema de negocio y el sistema que lo resuelve.
             </p>
-            <p class="output" style="margin-top:2em;"><strong>Key Skills</strong></p>
+
+            <div class="impact-strip" role="list">
+              <div class="cell"><div class="num">90%</div><span class="lbl">Reporting time ↓</span></div>
+              <div class="cell"><div class="num">60%</div><span class="lbl">Invoice effort ↓</span></div>
+              <div class="cell"><div class="num">43%</div><span class="lbl">OPEX ↓</span></div>
+              <div class="cell"><div class="num">20%</div><span class="lbl">NPS lift</span></div>
+            </div>
+
+            <p class="output" style="margin-top:1.8em;"><strong>Key Skills</strong></p>
             <ul class="output">
-              <li><strong>Automation & Workflow Tools:</strong> Python (scripting, data pipelines, predictive modeling), VBA (process automation in SAP & Excel), Power Automate (task automation, notifications, reporting workflows), API integration (data extraction, system connectivity)</li>
-              <li><strong>Data & Analytics:</strong> Power BI (interactive dashboards, KPI monitoring), SQL (data querying & transformation), Power Query (ETL workflows), Forecasting & Predictive Modeling (Python-based NPS and demand models)</li>
-              <li><strong>Process Improvement & Strategy:</strong> Lean Six Sigma (bottleneck analysis, KPI design, continuous improvement), Business & Digital Transformation initiatives, Automation impact measurement (time saved, cost reduction, error reduction)</li>
-              <li><strong>Collaboration & Enablement:</strong> Cross-functional alignment (Ops, Finance, CX, HR), Data storytelling & visualization for non-technical users, Training & documentation for automation adoption</li>
+              <li><strong>AI &amp; Automation Engineering:</strong> Diseño de sistemas multi-agente · LangChain · n8n · Workflow orchestration · Local LLM deployment (Ollama, LocalAI) · Model quantization · Prompt engineering · RAG patterns · MCP (Model Context Protocol) · Agent Skills.</li>
+              <li><strong>Data &amp; Analytics:</strong> Python (modelado predictivo, automatización) · SQL · Power BI (dashboards ejecutivos, KPI tracking) · Power Query / ETL · VBA · PostgreSQL · Redis.</li>
+              <li><strong>Infrastructure &amp; DevOps:</strong> Docker · Linux server admin · Ubuntu · On-premise inference · Edge computing · WhatsApp Cloud API · Gmail API · Sistemas distribuidos.</li>
+              <li><strong>Microsoft &amp; Google Ecosystem:</strong> Microsoft 365 (SharePoint, Teams, OneDrive, Power Apps, Power Automate) · Google Workspace · SAP data extraction.</li>
+              <li><strong>Business &amp; Operations:</strong> Solution architecture · Process optimization · Root cause analysis · KPI framework design · Lean Six Sigma · Hypothesis-driven analysis · Cross-functional project leadership.</li>
             </ul>
+
             <div class="output contacto-block">
-              <strong>Contact</strong>
+              <strong>Contacto</strong>
               <div class="contacto-flex">
                 <span>maxmarher@gmail.com</span>
-                <a href="https://linkedin.com/in/dantemh/" target="_blank">linkedin.com/in/dantemh/</a>
-                <span>+52 812-427-6331</span>
-                <span>Monterrey - Rio Bravo, MX</span>
+                <a href="https://linkedin.com/in/dantemh/" target="_blank">linkedin.com/in/dantemh</a>
+                <a href="https://wa.me/528140751881" target="_blank">+52 81 4075 1881</a>
+                <span>Monterrey, MX</span>
+                <span style="color: var(--fg-muted); font-size: 0.85em;">Español (nativo) · English (fluent)</span>
               </div>
             </div>
           </div>
-          <div id="p1" class="section" style="display:none;">
-            <p class="cmd">INSIGHT:</p>
-            <p class="output">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-          </div>
-          <div id="p2" class="section" style="display:none;">
-            <p class="cmd">Case Study.pdf</p>
-            <div class="output">
-              <h2>Summary</h2>
-              Market Terminal is a full-stack financial terminal designed to monitor stocks in real time, focusing on data efficiency, resilience to network failures, and cross-platform experience. The system uses a FastAPI backend for data management, a React frontend packaged with Tauri for native distribution, and a set of observability tools that ensure a reliable lifecycle from ingestion to visualization.<br><br>
-              <strong>Objective</strong><br>
-              <div style="margin-top:1em;"></div>
-              Develop a platform that:<br>
-              <ul>
-                <li>Allows exploration and analysis of stock data in real time without exceeding API quotas.</li>
-                <li>Maintains usability even in adverse scenarios (latency, partial network outages, consumption limits).</li>
-                <li>Provides a retro terminal-style desktop experience, standing out from traditional dashboards.</li>
-              </ul>
-              <div style="margin-top:2em;"></div>
-              <strong>Challenges & Solutions</strong>
-              <ol>
-                <li><strong>API Call Efficiency</strong><br>
-                  <em>Challenge:</em> Direct data ingestion could cause excessive quota consumption.<br>
-                  <em>Solution:</em>
-                  <ul>
-                    <li>Implementation of data-type-based cache with time-to-live (TTL).</li>
-                    <li>Prioritization of critical updates over secondary ones.</li>
-                  </ul>
-                </li>
-                <li><strong>Advanced Data Export</strong><br>
-                  <em>Challenge:</em> Users needed actionable reports beyond the UI.<br>
-                  <em>Solution:</em>
-                  <ul>
-                    <li>Dedicated FastAPI endpoint generates an Excel workbook with three sheets: Basic, Financials, Technical.</li>
-                    <li>Uses openpyxl with automatic column width adjustment.</li>
-                  </ul>
-                </li>
-                <li><strong>Client Resilience</strong><br>
-                  <em>Challenge:</em> Intermittent network outages reduced app reliability.<br>
-                  <em>Solution:</em>
-                  <ul>
-                    <li>Generic retry + timeout wrappers for each request.</li>
-                    <li>Auto-refresh data every 30s in the React layer.</li>
-                  </ul>
-                </li>
-                <li><strong>Observability</strong><br>
-                  <em>Challenge:</em> Diagnosing performance issues in production was difficult.<br>
-                  <em>Solution:</em>
-                  <ul>
-                    <li>High-Order Component (HOC) to inject metrics into every API call.</li>
-                    <li>Diagnostic script validates ports, active processes, and cache file sizes.</li>
-                  </ul>
-                </li>
-                <li><strong>Data Validation</strong><br>
-                  <em>Challenge:</em> Inconsistent JSON structures could break the UI.<br>
-                  <em>Solution:</em>
-                  <ul>
-                    <li>Centralized validators to clean and standardize data before rendering.</li>
-                  </ul>
-                </li>
-                <li><strong>Cross-Platform Distribution</strong><br>
-                  <em>Challenge:</em> Needed a portfolio usable in both browser and desktop.<br>
-                  <em>Solution:</em>
-                  <ul>
-                    <li>Tauri configuration packages React + Vite as a lightweight cross-platform executable.</li>
-                  </ul>
-                </li>
-              </ol>
-              <div style="margin-top:2em;"></div>
-              <strong>Architecture & Stack</strong><br>
-              <ul>
-                <li><strong>Backend:</strong> FastAPI, openpyxl, JSON cache system with metadata.</li>
-                <li><strong>Frontend:</strong> React + Vite, Tailwind, Recharts.</li>
-                <li><strong>Distribution:</strong> Tauri for native packaging.</li>
-                <li><strong>Observability:</strong> Metrics HOC + validators.</li>
-                <li><strong>Testing:</strong> Unit tests with Vitest to validate error handling and performance.</li>
-              </ul>
-              <div style="margin-top:2em;"></div>
-              <strong>Results & Insights</strong><br>
-              <ul>
-                <li>Significant reduction in redundant calls thanks to TTL cache.</li>
-                <li>High resilience to network failures via retries and timeouts.</li>
-                <li>Production-ready cross-platform distribution with Tauri.</li>
-                <li>Proactive validations prevent UI errors.</li>
-                <li>Strengthened full-stack profile with focus on performance, observability, and holistic UX.</li>
-              </ul>
-              <div style="margin-top:2em;"></div>
-              <strong>Lessons Learned</strong><br>
-              <ul>
-                <li>Smart cache design is key to avoiding overload of external services.</li>
-                <li>Packaging with Tauri offers great versatility but requires security and permission adjustments.</li>
-                <li>Proactive instrumentation (observability) helps identify issues before they impact users.</li>
-                <li>Data validators are as important as visual rendering for reliability.</li>
-              </ul>
-              <div style="margin-top:2em;"></div>
-              <strong>DEMO</strong><br>
-              <div style="margin: 1.5em 0; text-align:center;">
-                <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-                  <iframe width="1014" height="481" src="https://www.youtube.com/embed/8WVemLJ9rbI?autoplay=1&mute=1&vq=hd1080" title="Market Terminal Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:12px; border:none;"></iframe>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="curriculum" class="section" style="display:none;">
-            <p class="cmd">Work Experience & Academic Background.txt</p>
-            <div class="output cv-header">
-            </div>
-           <div class="output" style="margin-top:2em;">
-  <h2>Work Experience</h2>
-  <div class="job-block" style="margin-bottom:2em;">
-    <strong>Continuous Improvement & Training Analyst | Barry Callebaut</strong><br>
-    <em>June 2024 - July 2025</em>
-      <li>Led the ETL process for commercial dashboards: extracted data from SAP, transformed datasets using Power Query and VBA, and visualized insights in Power BI, reducing report time by 90%.</li>
-      <li>Collaborated with the Finance team to develop an automation that reduced the time spent downloading and distributing customer invoices by 60%.</li>
-      <li>Defined and implemented KPIs aligned with commercial and supply chain operations to inform strategic planning and continuous improvement initiatives.</li>
-      <li>Facilitated cross-functional workshops to identify operational bottlenecks and co-create strategic action plans using Lean methodology.</li>
-      <li>Built a lightweight CRM by integrating Gmail API with Google Sheets: automated email labeling, synced status updates back to inbox, and created a Power BI dashboard to track pending cases, response times, and prioritization, reducing manual review of hundreds of emails from 1-2 hour to 5 minutes and minimizing human error.</li>
-      <li>Designed and deployed a daily Logistics reporting tool in Excel with VBA, enabling shipment history tracking, variability analysis, and monitoring of scheduled vs. pending deliveries. The solution improved data quality, enhanced traceability, and reduced false positives in operational reporting.</li>
-      <li>Supported a global Optical Character Recognition initiative by migrating reporting from Excel to Power BI and creating a local database to ingest only new data. This streamlined workflows, improved scalability, and ensured more accurate international dashboards.</li>
 
-    </ul>
-  </div>
-  <div class="job-block" style="margin-bottom:2em;">
-    <strong>Business Analyst - Business Intelligence | Banregio</strong><br>
-    <em>March 2023 - June 2024</em>
-    <ul>
-      <li>Optimized data structures and reporting workflows, reducing operational costs by 43% while preserving data accuracy.</li>
-      <li>Built and deployed real-time dashboards consolidating KPIs across departments, enabling proactive, strategic decision-making.</li>
-      <li>Designed and implemented a predictive NPS model in Python, replacing third-party analytics, increasing forecast accuracy, and saving 80% in annual costs.</li>
-      <li>Partnered with business leaders to translate data insights into strategic initiatives enhancing customer engagement and operational efficiency.</li>
-    </ul>
-  </div>
-  <div class="job-block" style="margin-bottom:2em;">
-    <strong>Business Analyst, Subject Matter Expert - Comcast | Teleperformance</strong><br>
-    <em>January 2019 - January 2023</em>
-    <ul>
-      <li>Spearheaded a global CX improvement program using Lean Six Sigma, improving NPS by 20% across regions through strategic process standardization.</li>
-      <li>Developed a comprehensive performance metrics system integrating multiple channels and KPIs, enabling continuous measurement and strategic improvement.</li>
-      <li>Facilitated workshops with global stakeholders to translate analytics into actionable strategic plans.</li>
-      <li>Served as a liaison between technical teams and business units to drive scalable implementations aligned with strategy.</li>
-    </ul>
-  </div>
-  <h2>Personal Projects</h2>
-  <div class="job-block" style="margin-bottom:2em;">
-    <ul>
-  <li><strong><a href="https://dantemh50.github.io/Project_LandingPage/" target="_blank">Market Terminal (In Progress)</a>:</strong> Retro terminal-style app to visualize stock and crypto prices in real time, integrating public APIs, live updates via WebSockets, and CSV data export.</li>
-  <li><strong>MiniAura (Conceptual):</strong> Lightweight system combining vector memory and a reflexive engine to detect contradictions and maintain conversational coherence.</li>
-    </ul>
-  </div>
-  <h2>Education</h2>
-  <div class="job-block" style="margin-bottom:2em;">
-    <ul>
-      <li><strong>Bachelor's in International Business and Trade</strong> - TecMilenio University | 2022</li>
-      <li><strong>Software Engineering</strong> - UANL | 2017 (Incomplete)</li>
-    </ul>
-  </div>
-  <h2>Certifications</h2>
-  <div class="job-block" style="margin-bottom:2em;">
-    <ul>
-      <li>Project Management Professional | Google (In Progress)</li>
-      <li>Customer Experience Professional | Medallia (2024)</li>
-      <li>Business Analysis | Microsoft & LinkedIn (2024)</li>
-      <li>Market Intelligence | TecMilenio (2022)</li>
-      <li>International Business Management | TecMilenio (2020)</li>
-      <li>Lean Six Sigma Course | Teleperformance (2018)</li>
-    </ul>
-  </div>
-</div>
+          <!-- ============ PROYECTO PRINCIPAL: NOSTALGIA PRO ============ -->
+          <div id="p1" class="section" style="display:none;">
+            <p class="cmd">NostalgiaPro.md</p>
+            <span class="eyebrow">Proyecto en producción · Dic 2025 – Abr 2026</span>
+            <h1>Nostalgia Pro<br><em>Multi-Tenant WhatsApp AI Platform</em></h1>
+
+            <p class="output">
+              Plataforma conversacional grado-producción que automatiza calificación de ventas, agendado de citas y soporte al cliente sobre WhatsApp para PyMEs en México. Inferencia on-premise por defecto; modelos en la nube reservados para tareas de visión.
+            </p>
+
+            <h2>Arquitectura</h2>
+            <ul class="output">
+              <li><strong>3 agentes especializados</strong> (Sales, Scheduling, Demo) orquestados por un <em>router de clasificación de intención</em>.</li>
+              <li><strong>Redis</strong> como memoria de corto plazo por conversación.</li>
+              <li><strong>PostgreSQL</strong> como source of truth para bookings, leads y telemetría.</li>
+              <li>Despliegue containerizado con Docker sobre Ubuntu.</li>
+            </ul>
+
+            <h2>Capacidades clave</h2>
+            <ul class="output">
+              <li>Consultas de disponibilidad en tiempo real, timezone-aware.</li>
+              <li>Protección anti-spam multi-nivel.</li>
+              <li>Parsing adaptativo de media (imagen, audio, documentos).</li>
+              <li>Telemetría de uso de tokens por agente / por cliente.</li>
+              <li>Escalamiento controlado a operador humano (human-handoff).</li>
+            </ul>
+
+            <h2>Stack</h2>
+            <div class="output" style="margin-top: 0.4em;">
+              <span class="chip">n8n</span>
+              <span class="chip">LangChain</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Redis</span>
+              <span class="chip">Gemini</span>
+              <span class="chip">Ollama</span>
+              <span class="chip">Llama 3.2</span>
+              <span class="chip">Gemma</span>
+              <span class="chip">Docker</span>
+              <span class="chip">Ubuntu</span>
+              <span class="chip">WhatsApp Cloud API</span>
+            </div>
+
+            <h2>Por qué importa</h2>
+            <p class="output">
+              La mayoría de PyMEs en México pierde leads por la ventana entre <em>"vi tu mensaje"</em> y <em>"alguien te contesta"</em>. Nostalgia Pro cierra esa ventana sin sacrificar el control del cliente sobre sus datos — todo el modelo de lenguaje principal corre on-premise, y la base de datos es propiedad del negocio, no de un SaaS.
+            </p>
+          </div>
+
+          <!-- ============ MARKET TERMINAL CASE STUDY ============ -->
+          <div id="p2" class="section" style="display:none;">
+            <p class="cmd">CaseStudy.pdf</p>
+            <span class="eyebrow">Personal project · In progress</span>
+            <h1>Market Terminal<br><em>Retro stock terminal full-stack</em></h1>
+
+            <div class="output">
+              <h2>Resumen</h2>
+              Market Terminal es un terminal financiero full-stack diseñado para monitorear acciones en tiempo real, con foco en eficiencia de datos, resiliencia ante fallos de red y experiencia cross-platform. Backend FastAPI, frontend React empacado con Tauri, y un set de tooling de observabilidad para un ciclo de vida confiable de ingesta a visualización.
+
+              <h2>Objetivo</h2>
+              Desarrollar una plataforma que:
+              <ul>
+                <li>Permita exploración y análisis de datos de acciones en tiempo real sin reventar cuotas de API.</li>
+                <li>Mantenga usabilidad incluso en escenarios adversos (latencia, fallos parciales, límites de consumo).</li>
+                <li>Entregue una experiencia desktop estilo terminal retro, distinta de los dashboards típicos.</li>
+              </ul>
+
+              <h2>Retos &amp; soluciones</h2>
+              <ol>
+                <li><strong>Eficiencia de llamadas a API</strong> — Cache por tipo de dato con TTL + priorización de actualizaciones críticas sobre las secundarias.</li>
+                <li><strong>Export de datos avanzado</strong> — Endpoint dedicado en FastAPI que genera un Excel con tres hojas (Basic, Financials, Technical) usando openpyxl con ajuste automático de columnas.</li>
+                <li><strong>Resiliencia del cliente</strong> — Wrappers genéricos de retry + timeout por request, auto-refresh cada 30s en la capa React.</li>
+                <li><strong>Observabilidad</strong> — HOC que inyecta métricas en cada llamada API, script diagnóstico que valida puertos, procesos activos y tamaños de cache.</li>
+                <li><strong>Validación de datos</strong> — Validadores centralizados limpian y estandarizan JSON antes de renderizar.</li>
+                <li><strong>Distribución cross-platform</strong> — Tauri empaqueta React + Vite como ejecutable ligero multiplataforma.</li>
+              </ol>
+
+              <h2>Arquitectura &amp; stack</h2>
+              <div style="margin-top: 0.4em;">
+                <span class="chip">FastAPI</span>
+                <span class="chip">openpyxl</span>
+                <span class="chip">React + Vite</span>
+                <span class="chip">Tailwind</span>
+                <span class="chip">Recharts</span>
+                <span class="chip">Tauri</span>
+                <span class="chip">Vitest</span>
+              </div>
+
+              <h2>Resultados</h2>
+              <ul>
+                <li>Reducción significativa de llamadas redundantes gracias al cache TTL.</li>
+                <li>Alta resiliencia ante fallos de red vía retries y timeouts.</li>
+                <li>Distribución cross-platform production-ready con Tauri.</li>
+                <li>Validaciones proactivas que previenen errores de UI.</li>
+              </ul>
+
+              <h2>Demo</h2>
+              <div style="margin: 1.5em 0; text-align:center;">
+                <div style="position: relative; width: 100%; max-width: 1014px; margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.25);">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/8WVemLJ9rbI?rel=0&modestbranding=1&playsinline=1"
+                    title="Market Terminal Demo"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    style="position:absolute; inset:0; width:100%; height:100%; border:0;">
+                  </iframe>
+                </div>
+                <p class="comment" style="margin-top: 0.8em;">
+                  ¿No carga? <a href="https://www.youtube.com/watch?v=8WVemLJ9rbI" target="_blank" rel="noopener" style="color: var(--ambar); text-decoration: underline;">Ábrelo directo en YouTube ↗</a>
+                </p>
+              </div>
             </div>
           </div>
+
+          <!-- ============ BACKGROUND / CURRICULUM ============ -->
+          <div id="curriculum" class="section" style="display:none;">
+            <p class="cmd">Experience.txt</p>
+            <span class="eyebrow">Trayectoria</span>
+            <h1>Cinco años diagnosticando,<br><em>ahora construyendo.</em></h1>
+
+            <div class="output" style="margin-top:1.5em;">
+              <h2>Experiencia profesional</h2>
+
+              <div class="job-block">
+                <strong>Continuous Improvement Analyst</strong> · Barry Callebaut Group<br>
+                <em>Jul 2024 – Ago 2025 · Monterrey, MX</em>
+                <ul>
+                  <li>Bridge entre equipos locales en la migración global de <strong>Google Workspace → Microsoft 365</strong> para GBS; arquitecté estructuras de SharePoint y workflows automatizados para estandarizar gestión documental entre regiones.</li>
+                  <li>Construí un <strong>CRM ligero</strong> integrando Gmail API con Google Sheets y Power BI: etiquetado automático de email, sincronización de status al inbox — reduciendo revisión manual de cientos de casos comerciales de <strong>1–2 horas a 5 minutos</strong>.</li>
+                  <li>Re-ingeniería del ETL para dashboards comerciales (SAP → Power Query/VBA → Power BI), recortando tiempo de preparación de reportes en <strong>90%</strong> sin pérdida de exactitud.</li>
+                  <li>Automatización con Finance para distribución de facturas (Excel + Power Automate): <strong>60% menos esfuerzo manual</strong>.</li>
+                  <li>Herramienta diaria de reporte de Logística en Excel/VBA — tracking histórico, análisis de variabilidad y monitoreo de programado vs. pendiente; redujo falsos positivos y mejoró trazabilidad.</li>
+                  <li>Migración de workflow global de OCR de Excel a Power BI con DB local de ingest incremental: mejoró escalabilidad y confiabilidad de dashboards internacionales.</li>
+                </ul>
+              </div>
+
+              <div class="job-block">
+                <strong>Business Analyst — Business Intelligence</strong> · Banregio<br>
+                <em>Mar 2023 – Jun 2024 · Monterrey, MX</em>
+                <ul>
+                  <li>Mapeé y validé flujos transaccionales entre POS, sucursal y canal móvil durante la restructura corporativa de la división de pagos, asegurando integridad y segregación entre sistemas.</li>
+                  <li>Reducción de <strong>costos operativos del 43%</strong> mediante optimización de workflows y restructuración de datos, preservando calidad de información.</li>
+                  <li>Dashboards en tiempo real y programas de activación que dieron a los líderes de negocio una sola fuente de verdad para decisiones proactivas.</li>
+                  <li>Diseñé y desplegué un <strong>modelo predictivo de NPS en Python</strong>, reemplazando un proveedor externo de analítica — <strong>80% de ahorro</strong> con mejor precisión de forecast.</li>
+                </ul>
+              </div>
+
+              <div class="job-block">
+                <strong>Business Analyst</strong> · Teleperformance<br>
+                <em>Feb 2019 – Ene 2023 · México / Global</em>
+                <ul>
+                  <li>Lideré una iniciativa global de mejora de CX basada en Lean Six Sigma, elevando <strong>NPS +20%</strong> a través de múltiples regiones mediante estandarización de procesos y reducción de variación.</li>
+                  <li>Construí un sistema de métricas cross-channel alineado a KPIs operativos, habilitando mejoras data-driven en mercados internacionales.</li>
+                  <li>Facilité sesiones de estrategia con stakeholders globales para traducir insights de proceso en práctica operativa.</li>
+                </ul>
+              </div>
+
+              <h2>Proyectos personales</h2>
+              <div class="job-block">
+                <ul>
+                  <li><strong><a href="#" onclick="event.preventDefault(); document.querySelector('#link-p1').click();">Nostalgia Pro</a></strong> — Plataforma multi-tenant de WhatsApp AI en producción: 3 agentes orquestados, inferencia on-premise, PostgreSQL como source of truth.</li>
+                  <li><strong><a href="#" onclick="event.preventDefault(); document.querySelector('#link-p2').click();">Market Terminal</a></strong> (en progreso) — Terminal retro full-stack para precios de acciones en tiempo real, APIs públicas, WebSockets y export CSV.</li>
+                  <li><strong>MiniAura</strong> (conceptual) — Sistema ligero que combina memoria vectorial y motor reflexivo para detectar contradicciones y mantener coherencia conversacional.</li>
+                </ul>
+              </div>
+
+              <h2>Educación</h2>
+              <div class="job-block">
+                <ul>
+                  <li><strong>Licenciatura en Negocios y Comercio Internacional</strong> · Universidad Tecmilenio · 2019 – 2022</li>
+                  <li><strong>Ingeniería en Software</strong> (parcial · ~40%) · Universidad Autónoma de Nuevo León · 2014 – 2017</li>
+                </ul>
+              </div>
+
+              <h2>Certificaciones</h2>
+              <div class="job-block">
+                <ul>
+                  <li>Introduction to <strong>Model Context Protocol</strong> · Anthropic (May 2026)</li>
+                  <li>Introduction to <strong>Agent Skills</strong> · Anthropic (May 2026)</li>
+                  <li>Medallia Customer Experience Professional · Medallia (2024)</li>
+                  <li>Market Intelligence Certification · Universidad Tecmilenio (2022)</li>
+                  <li>Lean Six Sigma · Teleperformance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const root = document.documentElement;
@@ -620,17 +752,19 @@
       const sunIcon = document.querySelector('.sun-icon');
       const moonIcon = document.querySelector('.moon-icon');
       const nav = document.querySelector('.nav-header');
-      const pages = ['main', 'p1', 'p2', 'curriculum'];
+      const pages = ['main', 'curriculum', 'p1', 'p2'];
+
       const saved = localStorage.getItem('darkMode');
-    const isDark = saved === 'true';
-    toggle.checked = isDark;
-    updateTheme();
+      const isDark = saved === 'true';
+      toggle.checked = !isDark; // checked == light
+      updateTheme();
       toggle.addEventListener('change', updateTheme);
+
       const orderedPages = [
-  { id: 'main', label: 'About Me' },
-  { id: 'curriculum', label: 'Background' },
-        { id: 'p2', label: 'Market Terminal' },
-  { id: 'p1', label: 'Placeholder' }
+        { id: 'main',       label: 'Resumen' },
+        { id: 'curriculum', label: 'Trayectoria' },
+        { id: 'p1',         label: 'Nostalgia Pro' },
+        { id: 'p2',         label: 'Market Terminal' }
       ];
       orderedPages.forEach(({ id, label }) => {
         const a = document.createElement('a');
@@ -643,6 +777,7 @@
         });
         nav.appendChild(a);
       });
+
       function updateTheme() {
         if (toggle.checked) {
           root.setAttribute('data-theme', 'light');
@@ -656,6 +791,7 @@
           moonIcon.style.display = 'inline';
         }
       }
+
       function showSection(id) {
         pages.forEach((pageId) => {
           const section = document.getElementById(pageId);
